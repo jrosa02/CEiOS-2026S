@@ -1,0 +1,143 @@
+# Taryfy energii elektrycznej Tauron S.A. – rok 2026
+#
+# CENY ZAKUPU (purchase_net): wartości NETTO z doliczonym podatkiem akcyzowym
+# (0,005 PLN/kWh), BEZ VAT 23%. Źródło: oficjalna Taryfa Sprzedawcy TAURON
+# Sprzedaż sp. z o.o., zatwierdzona przez Prezesa URE decyzją
+# DRE.WRE.4211.53.10.2025.ASa1 z dnia 17 grudnia 2025 r.,
+# obowiązuje 1 stycznia 2026 – 31 grudnia 2026.
+#
+# CENY DYSTRYBUCJI (distribution_net): wartości PRZYBLIŻONE na podstawie
+# taryfy Tauron Dystrybucja (osobny dokument – zweryfikuj przed użyciem).
+
+[metadata]
+year = 2026
+location = "Kraków"
+vat_rate = 0.23
+billing_period_months = 2        # cykl rozliczeniowy: co 2 miesiące
+billing_periods_per_year = 6
+
+[holidays_2026]
+# 13 dni ustawowo wolnych od pracy (weekendy liczone osobno)
+dates = [
+    "2026-01-01",  # Nowy Rok
+    "2026-01-06",  # Objawienie Pańskie (Trzech Króli)
+    "2026-04-05",  # Niedziela Wielkanocna
+    "2026-04-06",  # Poniedziałek Wielkanocny
+    "2026-05-01",  # Święto Pracy
+    "2026-05-03",  # Święto Konstytucji 3 Maja
+    "2026-05-24",  # Zesłanie Ducha Świętego (Zielone Świątki)
+    "2026-06-04",  # Boże Ciało
+    "2026-08-15",  # Wniebowzięcie NMP
+    "2026-11-01",  # Wszystkich Świętych
+    "2026-11-11",  # Święto Niepodległości
+    "2026-12-25",  # Boże Narodzenie (I dzień)
+    "2026-12-26",  # Boże Narodzenie (II dzień)
+]
+
+[tariffs.common.fixed_per_month]
+sieciowa_stala = 10.89
+abonamentowa   = 2.28
+mocowa =24.07
+
+# Opłaty zmienne strefowe dystrybucji zawierają już w sobie:
+#   składnik zmienny stawki sieciowej + stawka jakościowa + opłata OZE + opłata kogeneracyjna
+# Źródło: Stawki-brutto-w-grupach-G-na-rok-2026.pdf (wartości podzielone przez 1,23)
+
+# ===========================================================
+# G11 – Taryfa całodobowa (jedna strefa, całą dobę)
+# Źródło ceny: taryfa URE 2026, tabela netto* = 0,5020 PLN/kWh
+# ===========================================================
+[tariffs.G11]
+description = "Taryfa całodobowa – jedna strefa"
+
+[tariffs.G11.zones.all_day]
+name             = "Całodobowa"
+purchase_net     = 0.5020   # ✓ oficjalna cena URE 2026 (z akcyzą, bez VAT)
+distribution_net = 0.2899   #zawiera sieć+jakość+OZE+kogeneracja
+# Brak all_hours/workday_hours → strefa domyślna, obowiązuje zawsze
+
+
+# ===========================================================
+# G12 – Taryfa dwustrefowa (dzienna / nocna)
+# Źródło stref: taryfa URE 2026, pkt 3.2.1
+#
+# WAŻNE: strefy obowiązują 7 dni w tygodniu (brak podziału na
+# dni robocze / wolne). Użyj klucza all_hours (nie workday_hours).
+#   Strefa I  (dzień): 6:00–13:00 i 15:00–22:00  ← każdego dnia
+#   Strefa II (noc):   13:00–15:00 i 22:00–6:00  ← każdego dnia
+# ===========================================================
+[tariffs.G12]
+description = "Taryfa dwustrefowa – strefa dzienna i nocna (7 dni/tydz.)"
+
+[tariffs.G12.zones.day]
+name             = "Strefa I – dzienna"
+purchase_net     = 0.5480   # ✓ oficjalna cena URE 2026
+distribution_net = 0.3276   
+# all_hours → strefa aktywna O KAŻDEJ PORZE ROKU, bez wyjątku dla weekendów
+all_hours = [6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21]
+
+[tariffs.G12.zones.night]   # ← strefa domyślna (najtańsza, zawsze ostatnia)
+name             = "Strefa II – nocna"
+purchase_net     = 0.4180   # ✓ oficjalna cena URE 2026
+distribution_net = 0.0993   
+
+# ===========================================================
+# G12w – Taryfa dwustrefowa weekendowa (szczytowa / pozaszczytowa)
+# Źródło stref: taryfa URE 2026, pkt 3.2.1
+#
+#   Strefa I  (szczyt):     pon–pt (nie-świąt.) 6:00–13:00 i 15:00–22:00
+#   Strefa II (pozaszczyt): pon–pt 13:00–15:00 i 22:00–6:00
+#                           ORAZ wszystkie godziny sobót, niedziel i świąt
+# ===========================================================
+[tariffs.G12w]
+description = "Taryfa dwustrefowa weekendowa – szczyt / pozaszczyt"
+
+[tariffs.G12w.zones.peak]
+name             = "Strefa I – szczytowa"
+purchase_net     = 0.6270   # ✓ oficjalna cena URE 2026
+distribution_net = 0.3733   
+# workday_hours → strefa aktywna TYLKO w dni robocze (weekendy/święta → pozaszczyt)
+# Godziny: 6:00-13:00 (h 6-12) i 15:00-22:00 (h 15-21)
+workday_hours = [6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 20, 21]
+
+[tariffs.G12w.zones.off_peak]   # ← strefa domyślna
+name             = "Strefa II – pozaszczytowa i weekendowa"
+purchase_net     = 0.4180   # ✓ oficjalna cena URE 2026
+distribution_net = 0.0947   
+
+# ===========================================================
+# G13 – Taryfa trzystrefowa
+# Źródło stref: taryfa URE 2026, pkt 3.2.1
+# Uproszczenie z instrukcji: przez cały rok obowiązują godziny LETNIE.
+#
+# G13 ma dwa odrębne szczyty (oba droższe niż pozostałe godziny):
+#   Strefa II (szczyt popołudniowy): pon–pt 19:00–22:00  ← NAJDROŻSZA
+#   Strefa I  (szczyt przedpołudniowy): pon–pt 7:00–13:00
+#   Strefa III (pozostałe):  13:00–19:00, 22:00–7:00 każdego dnia
+#                            ORAZ wszystkie godziny sobót, niedziel i świąt
+#                            ← NAJTAŃSZA (strefa domyślna)
+#
+# Godziny zimowe (1 paź – 31 mar, tu nieużywane per uproszczenie):
+#   szczyt popołudniowy: 16:00–21:00
+# ===========================================================
+[tariffs.G13]
+description = "Taryfa trzystrefowa – szczyt popoł. / szczyt przedpoł. / pozostałe (godziny letnie cały rok)"
+
+[tariffs.G13.zones.afternoon_peak]
+name             = "Strefa II – szczyt popołudniowy"
+purchase_net     = 0.7830   # ✓ oficjalna cena URE 2026 – NAJDROŻSZA strefa
+distribution_net = 0.4333   
+# Godziny letnie w dni robocze: 19:00–22:00
+workday_hours = [19, 20, 21]
+
+[tariffs.G13.zones.morning_peak]
+name             = "Strefa I – szczyt przedpołudniowy"
+purchase_net     = 0.4718   # ✓ oficjalna cena URE 2026
+distribution_net = 0.2638    
+# Godziny letnie w dni robocze: 7:00–13:00
+workday_hours = [7, 8, 9, 10, 11, 12]
+
+[tariffs.G13.zones.remaining]   # ← strefa domyślna (najtańsza, zawsze ostatnia)
+name             = "Strefa III – pozostałe godziny doby"
+purchase_net     = 0.4260   # ✓ oficjalna cena URE 2026
+distribution_net = 0.08270

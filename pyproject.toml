@@ -1,0 +1,14 @@
+[project]
+name = "ceios-2026s"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "latex2mathml>=3.79.0",
+    "markdown>=3.10.2",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.1",
+    "python-docx>=1.2.0",
+    "weasyprint>=68.1",
+]

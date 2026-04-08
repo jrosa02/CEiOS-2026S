@@ -14,8 +14,6 @@
 | Węgiel – groszek | 8–25 | 750–870 |
 | Koks opałowy | >40 | 420–500 |
 
-**Uwaga:** Koks jest lżejszy od węgla ze względu na porowatą strukturę powstałą podczas koksowania (ok. 35–45% porowatości otwartej; Kossowicz W., *Koksownictwo*, Wyd. AGH, 2015).
-
 ## 1.b Definicja metra przestrzennego (mp) drewna oraz relacja m³/mp
 
 **Metr przestrzenny (mp)** – jednostka objętości stosu drewna o wymiarach 1 m × 1 m × 1 m, uwzględniająca puste przestrzenie między kawałkami drewna.
@@ -23,7 +21,7 @@
 **Relacja m³/mp:**  
 1 metr przestrzenny (mp) odpowiada 0,65–0,75 m³ litego drewna (bez pustych przestrzeni). Współczynnik zależy od gatunku i długości kawałków.
 
-| Gatunek drewna | Współczynnik przeliczeniowy (mp → m³) | Uwagi |
+| Gatunek drewna | Współczynnik przeliczeniowy (mp → m³) | Rodzaj |
 |:---|:---|:---|
 | Dąb | 0,68 | drewno twarde liściaste |
 | Buk | 0,70 | drewno twarde liściaste |
@@ -33,8 +31,6 @@
 | Sosna | 0,65 | drewno iglaste |
 | Modrzew | 0,65 | drewno iglaste |
 | Świerk, jodła | 0,62 | drewno iglaste, luźny stos |
-
-**Uwaga:** Wartości w tabeli dotyczą drewna ciętego na odcinki ~1 m (metrówka); dla kłód współczynnik jest niższy.
 
 ## 1.c Masa nasypowa drewna [kg/mp] dla różnych gatunków
 
@@ -52,6 +48,8 @@ Drewno w stanie powietrznosuchym (wilgotność ok. 15–20%):
 | Świerk | 450 | 0,62 | ok. 279 |
 
 **Obliczenie:** masa nasypowa [kg/mp] = gęstość litego drewna ρ [kg/m³] × współczynnik mp→m³
+
+Masa nasypowa paliw stałych zależy od frakcji i struktury: węgiel kamienny (580–870 kg/m³) jest gęstszy od koksu (420–500 kg/m³) ze względu na porowatość koksu. Dla drewna kluczowy jest gatunek – masa nasypowa waha się od ok. 279 kg/mp (świerk) do ok. 518 kg/mp (grab), co bezpośrednio wpływa na efektywność zakupu i magazynowania.
 
 ## Źródła
 
@@ -80,8 +78,6 @@ Drewno w stanie powietrznosuchym (wilgotność ok. 15–20%):
 | SO₂ | 0,007 | 0,025 |
 | Pył PM2,5 | 0,011 | 0,040 |
 
-**Uwagi:** Wartość opałowa wg normy PN-EN ISO 6976 dla gazu grupy E (wysokometanowego). CO₂ wg KOBiZE 2025. CO, NOₓ, SO₂, pył — wg EMEP/EEA Emission Inventory Guidebook 2023, kategoria 1.A.4.b (residential combustion, natural gas). Niska emisja SO₂ wynika ze śladowej zawartości siarki w gazie ziemnym (<5 mg/m³).
-
 ### 2.b Olej opałowy
 
 | Parametr | Olej opałowy lekki | Olej opałowy ciężki |
@@ -99,8 +95,6 @@ Drewno w stanie powietrznosuchym (wilgotność ok. 15–20%):
 | Pył PM2,5 | 0,036 | 0,130 | 0,120 |
 | Popiół | <0,01 | 0,036 | 0,030 |
 
-**Uwagi:** WO i CO₂ wg KOBiZE 2025. SO₂ obliczona przy zawartości siarki 0,35% dla oleju lekkiego i 2,0% dla oleju ciężkiego (maks. dopuszczalne). CO, NOₓ, pył — EMEP/EEA Guidebook 2023, kat. 1.A.4.b (palniki olejowe, małe instalacje). W Polsce do ogrzewania domów stosuje się wyłącznie olej opałowy lekki (ekolit).
-
 ### 2.c Węgiel
 
 | Parametr | Węgiel kamienny (ekogroszek) | Węgiel brunatny |
@@ -116,8 +110,6 @@ Drewno w stanie powietrznosuchym (wilgotność ok. 15–20%):
 | SO₂ | 0,58 | 0,58 | 1,50–2,50 |
 | Pył PM2,5 | 0,05 | 0,50 | 0,80 |
 | Popiół | 5–12% masy | 5–12% masy | 10–25% masy |
-
-**Uwagi:** CO₂ wg KOBiZE 2025 (średnia dla węgla kamiennego energetycznego). Emisja SO₂ przy typowej zawartości siarki ~0,7%. Emisja CO i pyłu silnie zależy od klasy kotła: kocioł kl. 5 (Ecodesign, automatyczny podajnik) emituje 80× mniej CO i 20× mniej pyłu niż tzw. „kopciuch" (kocioł bez klasy) — wartości dla kotłów bez klasy: CO ok. 8 kg/GJ, pył ok. 1,0 kg/GJ (IOŚ-PIB 2020).
 
 ### 2.d Koks
 
@@ -135,8 +127,6 @@ Drewno w stanie powietrznosuchym (wilgotność ok. 15–20%):
 | Pył PM2,5 | 0,12 | 0,43 |
 | Popiół | 10–15% masy | — |
 
-**Uwagi:** CO₂ wg KOBiZE 2025 — koks ma najwyższy wskaźnik CO₂ spośród paliw stałych ze względu na niemal czysty węgiel pierwiastkowy (~95% C; wg PN-EN ISO 17246:2010 i danych KOBiZE). Natomiast SO₂ jest niższe niż dla węgla, bo siarka jest usuwana w procesie koksowania (koks ma zwykle <0,1% S; wg norm PN-EN ISO 19579 i PN-EN 1094-1). Zawartość popiołu wg PN-ISO 1171.
-
 ### 2.e Drewno (różne rodzaje i wilgotność)
 
 Drewno suche (wilgotność 15–20%):
@@ -150,7 +140,7 @@ Drewno suche (wilgotność 15–20%):
 
 Wpływ wilgotności na wartość opałową drewna:
 
-| Wilgotność drewna | Wartość opałowa [kWh/kg] | Uwagi |
+| Wilgotność drewna | Wartość opałowa [kWh/kg] | Rodzaj |
 |:---|:---|:---|
 | 15–20% | ok. 4,0 | drewno sezonowane, optymalne |
 | 30–40% | ok. 3,0–3,5 | drewno częściowo wysuszone |
@@ -164,8 +154,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | SO₂ | 0,03 | 0,04 |
 | Pył PM2,5 | 0,05 | 0,30–1,00 |
 | Popiół | 1–3% masy | 1–3% masy |
-
-**Uwagi:** CO₂ brutto (109,6 kg/GJ) zbliżone do węgla, ale drewno uznaje się za CO₂-neutralne w cyklu życia — emitowany CO₂ był uprzednio pochłonięty przez drzewo podczas wzrostu (bilans węglowy wg dyrektywy RED II). CO i pył zależą silnie od kotła: nowoczesny kocioł zgazowujący emituje 30–60× mniej niż stary piec. Dane: EMEP/EEA Guidebook 2023, IOŚ-PIB 2020.
 
 ### 2.f Pelet drzewny
 
@@ -183,16 +171,16 @@ Wpływ wilgotności na wartość opałową drewna:
 | Pył PM2,5 | 0,02 | 0,072 |
 | Popiół | <1% masy | — |
 
-**Uwagi:** Wartość opałowa poniżej 18 MJ/kg dotyczy peletu klasy ENplus A1 (wilgotność <10%, popioł <0,7%). CO₂ brutto (109,6 kg/GJ) identyczne jak dla drewna — biomasa, ta sama zasada bilansu węglowego. Niskie emisje CO i pyłu możliwe dzięki automatycznemu dozowaniu paliwa i stałym parametrom spalania w kotle retortowym lub z górnym podajnikiem. Dane: EMEP/EEA Guidebook 2023, EN ISO 17225-2.
-
 ### 2.g Energia elektryczna – wskaźniki emisji wg KOBIZE
 
-| Substancja | Wskaźnik emisji [kg/MWh] (odbiorca końcowy) | Uwagi |
-|:---|:---|:---|
-| CO₂ | ok. 766 | dane za 2025 r. |
-| SO₂ | ok. 0,36 | |
-| NOₓ | ok. 0,39 | |
-| Pył całkowity | ok. 0,06–0,08 | |
+| Substancja | Wskaźnik emisji [kg/MWh] (odbiorca końcowy) |
+|:---|:---|
+| CO₂ | ok. 766 |
+| SO₂ | ok. 0,36 |
+| NOₓ | ok. 0,39 |
+| Pył całkowity | ok. 0,06–0,08 |
+
+Najniższy wskaźnik emisji CO₂ mają gaz ziemny (55,8 kg/GJ) i biomasa (neutralna bilansowo), a najwyższy koks (107 kg/GJ) i węgiel brunatny (101–111 kg/GJ). Starsze urządzenia grzewcze bez klasy generują wielokrotnie wyższe emisje CO i pyłu PM2,5 w porównaniu z kotłami klasy 5, co podkreśla kluczową rolę jakości spalania, niezależnie od rodzaju paliwa.
 
 ## Źródła (weryfikacja w dwóch niezależnych źródłach)
 
@@ -224,8 +212,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Łączny koszt | ok. 3,62 zł/m³ |
 | Cena w przeliczeniu na energię | ok. 363 zł/MWh |
 
-**Uwaga:** cena paliwa w taryfie W-3 (dla odbiorców ogrzewających domy) z opłatami dystrybucyjnymi wynosi łącznie ok. 3,62 zł/m³; przy wartości opałowej 9,97 kWh/m³ daje to 3,62 ÷ 9,97 × 1000 ≈ 363 zł/MWh.
-
 ### 3.b Olej opałowy
 
 | Parametr | Wartość |
@@ -233,8 +219,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Cena zakupu (brutto) | ok. 4,20–4,55 zł/litr |
 | Cena średnia | ok. 4,30 zł/litr |
 | Przeliczenie na PLN/MWh (przy WO ok. 10 kWh/l) | ok. 430 zł/MWh |
-
-**Uwaga:** ceny detaliczne lekkiego oleju opałowego w marcu 2026 r. wynoszą średnio ok. 4,30 zł/litr brutto (z VAT 23%). W przeliczeniu na energię daje to ok. 430 zł/MWh.
 
 ### 3.c Węgiel
 
@@ -245,8 +229,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Węgiel na składach lokalnych | ok. 1500–1900 zł/t |
 | Przeliczenie na PLN/MWh (przy WO ok. 7 kWh/kg) | ok. 160–270 zł/MWh |
 
-**Uwaga:** najniższe ceny węgla dostępne są w sklepie internetowym Polskiej Grupy Górniczej (PGG). Na lokalnych składach ceny są wyższe ze względu na koszty transportu i marże pośredników.
-
 ### 3.d Koks
 
 | Parametr | Wartość |
@@ -254,8 +236,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Cena koksu opałowego | ok. 2900–4200 zł/t |
 | Koks pakowany (workowany) | do ok. 4500 zł/t |
 | Przeliczenie na PLN/MWh (przy WO ok. 8 kWh/kg) | ok. 360–560 zł/MWh |
-
-**Uwaga:** koks jest paliwem znacznie droższym od węgla, jednak charakteryzuje się wyższą wartością opałową (ok. 28–29 MJ/kg) i bardzo niską emisją zanieczyszczeń.
 
 ### 3.e Drewno (różne rodzaje i wilgotność)
 
@@ -267,11 +247,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Drewno sezonowane – prywatne składy | mp | ok. 200–400 | ok. 140–280 |
 | Drewno suche (grab, dąb) – prywatne składy | mp | ok. 620–700 | ok. 440–500 |
 
-**Uwagi:**
-- Drewno od Lasów Państwowych jest najtańsze, ale wymaga sezonowania (ok. 1–2 lat).
-- Drewno sezonowane (gotowe do palenia) w prywatnych składach jest znacznie droższe.
-- Ceny dotyczą metra sześciennego (m³) litego drewna lub metra przestrzennego (mp).
-
 ### 3.f Pelet drzewny
 
 | Parametr | Wartość |
@@ -280,8 +255,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Pellet luzem – składy i hurtownie | ok. 1800–2300 zł/t |
 | Pellet premium – markety budowlane | ok. 2200–2800 zł/t |
 | Przeliczenie na PLN/MWh (przy WO ok. 5 kWh/kg) | ok. 330–560 zł/MWh |
-
-**Uwaga:** pellet drzewny klasy ENplus A1 to paliwo wysokiej jakości o niskiej zawartości popiołu (poniżej 1%). Ceny znacząco wzrosły w sezonie zimowym 2026 r. ze względu na zwiększone zapotrzebowanie.
 
 ### 3.g Energia elektryczna (taryfa G11)
 
@@ -292,7 +265,7 @@ Wpływ wilgotności na wartość opałową drewna:
 | w tym: dystrybucja + opłaty stałe | ok. 0,18–0,25 zł/kWh |
 | Przeliczenie na PLN/MWh (brutto, z dystrybucją) | ok. 740–820 zł/MWh |
 
-**Uwaga:** Taryfa G11 PGE na 2026 r. – składnik zmienny sprzedaży ok. 49,7 gr/kWh netto + opłata dystrybucyjna zmienna ok. 20 gr/kWh netto + opłata OZE, kogeneracyjna i mocowa łącznie ok. 3 gr/kWh netto, razem brutto ~0,78 zł/kWh. Ceny zbliżone u Tauron, Enea, Energa. Do porównania z innymi nośnikami należy brać pełny koszt dostarczenia energii (sprzedaż + dystrybucja + opłaty), nie sam składnik energii.
+Najtańszym nośnikiem energii w przeliczeniu na kWh jest węgiel kamienny i drewno z nadleśnictwa (ok. 110–270 zł/MWh), a najdroższym energia elektryczna (ok. 740–820 zł/MWh). Ceny gazu ziemnego (ok. 363 zł/MWh) i oleju opałowego (ok. 430 zł/MWh) plasują się powyżej połowy tego przedziału.
 
 ## Źródła
 
@@ -313,8 +286,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Klasa 3 | ≥ 73 | ok. 65–70 |
 | „Kopciuch” (brak klasy) | 40–60 | poniżej 50 |
 
-**Uwagi:** Sprawność kotłów węglowych spada znacząco przy obciążeniu poniżej 50% mocy nominalnej (nawet o ok. 30%). Norma PN-EN 303-5:2012 wymaga pomiarów przy mocy nominalnej i przy 30% obciążenia.
-
 ### 4.b Piece na drewno/pelet/biomasę
 
 | Typ urządzenia | Sprawność maksymalna [%] | Sprawność przy obciążeniu 30% [%] |
@@ -323,8 +294,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Kocioł zgazowujący drewno | 85–90 | 75–85 |
 | Kominek z płaszczem wodnym | 70–80 | 50–70 |
 | Stary piec na drewno | 50–65 | poniżej 50 |
-
-**Uwagi:** Nowoczesne kotły na biomasę klasy 5 (Ecodesign) osiągają sprawność ≥88%; kotły pelletowe (np. Viessmann Vitoligno) do 96%. Przy niskim obciążeniu sprawność spada, zwłaszcza bez automatycznej regulacji.
 
 ### 4.c Kotły na gaz ziemny
 
@@ -335,8 +304,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Atmosferyczny (niska temp.) | 85–92 | 80–88 |
 | Atmosferyczny (wysoka temp.) | 80–85 | 75–82 |
 
-**Uwagi:** Sprawność >100% wynika z odzysku ciepła kondensacji pary wodnej ze spalin. Przy 30% obciążeniu temperatura powrotu jest niższa, co intensyfikuje kondensację — stąd wyższa sprawność niż przy pełnym obciążeniu (EN 15502-1). Średnioroczna sprawność kotłów kondensacyjnych wynosi ok. 90–100%.
-
 ### 4.d Kotły na olej opałowy
 
 | Typ kotła | Sprawność maksymalna [%] | Sprawność przy obciążeniu 30% [%] |
@@ -344,8 +311,6 @@ Wpływ wilgotności na wartość opałową drewna:
 | Kondensacyjny (nowoczesny) | do 98 | ok. 92–95 |
 | Standardowy | 92–94,5 | ok. 85–90 |
 | Stary kocioł olejowy | 70–85 | poniżej 70 |
-
-**Uwagi:** Kotły kondensacyjne olejowe osiągają sprawność do 98% dzięki odzyskowi ciepła kondensacji — analogicznie jak gazowe.
 
 ### 4.e Pompy ciepła (woda-woda, powietrze-woda)
 
@@ -355,7 +320,7 @@ Wpływ wilgotności na wartość opałową drewna:
 | Woda-woda | 4,5–5,5 | (nie dotyczy – temp. źródła stabilna) | Wysoka efektywność przez cały rok |
 | Gruntowa (solanka-woda) | 4,0–5,0 | (nie dotyczy – temp. źródła stabilna) | Bardzo dobra efektywność |
 
-**Uwagi:** COP = ciepło dostarczone / energia elektryczna pobrana. Pompy gruntowe i woda-woda mają stabilne COP przez cały rok; pompy powietrzne tracą wydajność przy niskiej temperaturze zewnętrznej (A-7/W35). Wartości katalogowe wg EN 14511; rzeczywisty SCOP jest niższy.
+Sprawność urządzeń grzewczych waha się od poniżej 50% (stare piece bez klasy) do ponad 100% (kotły kondensacyjne, odzysk ciepła skraplania), przy czym różnica między „kopciuchem" a kotłem klasy 5 oznacza o 30–50% większe zużycie paliwa i nawet 80-krotnie wyższe emisje CO. Pompy ciepła wyróżniają się COP 3,5–5,5, czyli z każdego kWh energii elektrycznej uzyskuje się od 3,5 do 5,5 kWh ciepła.
 
 ---
 
@@ -391,6 +356,8 @@ Cała porcja paliwa wsypywana jest do czystej komory i rozpalana od góry. Żar 
 | Wyższa sprawność i efektywność – dłuższy czas palenia (nawet do 15-27 godzin) na jednym zasypie | Dłuższy czas nagrzewania instalacji na początku procesu |
 | Mniejsze zużycie paliwa i ograniczenie osadzania się smoły w kominie | Nie sprawdza się dobrze przy paleniu węglem kostką lub koksem |
 | Możliwość zastosowania w 90% domowych kotłów (z wlotem powietrza pod ruszt) | Proces jest cykliczny – po wypaleniu wsadu piec gaśnie i wymaga ponownego rozpalania (ograniczone możliwości dołożenia paliwa) |
+
+Palenie od góry redukuje emisje pyłu i CO o ponad 50% oraz wydłuża czas pracy pieca do 15–27 godzin na jednym zasypie kosztem dłuższego nagrzewania na początku. Palenie od dołu jest prostsze i toleruje różne paliwa, ale wymaga częstego dokładania i generuje znacznie wyższe emisje zanieczyszczeń.
 
 ## Źródła
 
@@ -478,6 +445,8 @@ V_{total} = V_h + V_c = 300 + 200 = 500 \, \text{l}
 - **500 litrów wody o temperaturze 39°C** (300 l z zasobnika + 200 l zimnej)
 
 
+Podgrzanie 300 litrów wody od 15°C do 55°C wymaga 13,92 kWh (50,16 MJ), a do 95°C – dwukrotnie więcej: 27,84 kWh (100,32 MJ). Po zmieszaniu zasobnika 55°C z wodą zimną (15°C) do temperatury użytkowej 39°C uzyskuje się 500 litrów gotowej wody.
+
 ## Źródła (dla stałych fizycznych)
 
 1. https://pl.wikipedia.org/wiki/Ciep%C5%82o_w%C5%82a%C5%9Bciwe  
@@ -522,9 +491,9 @@ Kubatura: 150 m² × 2,7 m = **405 m³**. Moc CWU dla 4-osobowej rodziny wynosi 
 - Moc CWU: `+ 2,0 kW`
 - **Moc całkowita: 20,0 kW**
 
-> **Uwaga:** Przewymiarowanie kotła prowadzi do taktowania palnika (częste włączanie/wyłączanie), obniżenia sprawności sezonowej i szybszego zużycia urządzenia — zalecane jest OZC zamiast doboru „z zapasem".
-
 ---
+
+Moc kotła dla budynku 150 m² waha się od 3 kW (dom pasywny) do ok. 21 kW (budynek nieocieplony z lat 70.), z dodatkowym składnikiem CWU wynoszącym 1–2 kW dla 4-osobowej rodziny. Prawidłowy dobór powinien opierać się na obliczeniu OZC (PN-EN 12831), a nie wyłącznie na wskaźnikach orientacyjnych W/m².
 
 ## Źródła
 
@@ -573,9 +542,13 @@ Obliczenia: Roczne zapotrzebowanie na energię całkowitą [kWh/rok] = (wskaźni
 | **H (niskoenergetyczny)** | standard NZEB | ≤ 30 | ≤ 4 500 | 3 500 | **≤ 8 000** |
 | **I (pasywny)** | standard NF15 | ≤ 15 | ≤ 2 250 | 3 500 | **≤ 5 750** |
 
-> **Uwaga:** W przypadku budynków pasywnych, ze względu na bardzo niskie straty ciepła, zapotrzebowanie na energię do ogrzewania może wynosić nawet **1500 kWh rocznie**, co po dodaniu c.w.u. daje całkowite zapotrzebowanie rzędu **5000 kWh/rok**.
+**Kalkulator internetowy Symulatorogrzewania.pl** – wyniki dla budynku 150 m²:
 
-> ¹ Warianty E i F są definiowane przez normy WT jako limity wskaźnika **EP** (energia pierwotna): EP ≤ 95 kWh/(m²·rok) dla WT 2017 i EP ≤ 70 kWh/(m²·rok) dla WT 2021. Wskaźnik EU (energia użytkowa) jest niższy od EP i zależy od sprawności systemu grzewczego. Dla ogrzewania gazem kondensacyjnym (η = 95%, w_p = 1,1): EU ≈ EP × η / w_p, co daje EU ≈ 82 kWh/(m²·rok) przy EP = 95, i EU ≈ 60 kWh/(m²·rok) przy EP = 70. Wartości w tabeli (60–85 dla E, 45–65 dla F) odpowiadają typowym rzeczywistym stratom ciepła budynków z tych okresów przy różnych systemach grzewczych.
+![Dom dobrze zaizolowany – wynik kalkulatora](<SymulatorOgrzewania.pl – dom dobrze zaizolowany.png>)
+
+![Dom średnio zaizolowany – wynik kalkulatora](<SymulatorOgrzewania.pl – dom średnio zaizolowany.png>)
+
+Roczne zapotrzebowanie na energię użytkową dla budynku 150 m² wynosi od ≤5 750 kWh (dom pasywny) do 26 000–41 000 kWh (budynek nieocieplony z lat 60.–80.) – różnica ponad 10-krotna. Normy WT 2021 ograniczają wskaźnik EU do 45–65 kWh/(m²·rok), co dla 150 m² daje całkowite zapotrzebowanie ok. 10 250–13 250 kWh/rok wraz z CWU. Wyniki z kalkulatora Symulatorogrzewania.pl są zgodne z obliczonymi wartościami z niewielkim odchyleniem wynikającym z uproszczonych wskaźników przyjętych w obliczeniach.
 
 ### Źródła
 
@@ -593,8 +566,6 @@ Obliczenia: Roczne zapotrzebowanie na energię całkowitą [kWh/rok] = (wskaźni
 
 Budynek 150 m², EU = 80 kWh/(m²·rok) (standard WT 2017 po termomodernizacji), 4-osobowa rodzina:
 
-> **Uwaga metodyczna:** Kalkulator POBE przyjmuje zapotrzebowanie na c.w.u. **ok. 2 000 kWh/rok** dla 4-osobowej rodziny (oparte na normie EN 15316 — 40 l/osobę/dobę przy ΔT = 35 K). W zad. 8 przyjęto **3 500 kWh/rok** wg rozporządzenia Dz.U. 2015 poz. 376 (metodologia EP), które zakłada 55 l/osobę/dobę przy ΔT = 40 K. Różnica wynika z odmiennych założeń normatywnych, a nie błędu — w obliczeniach kosztów stosuje się wartość kalkulatora (2 000 kWh), natomiast w analizie zapotrzebowania rocznego (zad. 8) — wartość z rozporządzenia (3 500 kWh).
-
 | Źródło ciepła / paliwo | Energia cieplna [kWh] | Zużycie paliwa / energii el. | COP / sprawność | Koszt roczny brutto [zł] |
 |:---|:---|:---|:---|:---|
 | **Pompa ciepła gruntowa (taryfa G12)** | 12 000 | ~3 000 kWh el. | COP ≈ 4,0 | 1 613 |
@@ -607,25 +578,18 @@ Budynek 150 m², EU = 80 kWh/(m²·rok) (standard WT 2017 po termomodernizacji),
 | **Pellet drzewny** | 12 000 | 2 400 kg | ~90% | 4 031 |
 | **Olej opałowy lekki** | 12 000 | ~1 310 l | ~92% | ~5 630 |
 
-**Uwaga dotycząca pomp ciepła:** kolumna „Zużycie paliwa" dla pomp ciepła podaje zużycie energii elektrycznej (input), a nie dostarczone ciepło (output). COP = ciepło dostarczone / energia elektryczna pobrana; przy COP = 4,0 z 3 000 kWh el. uzyskuje się 12 000 kWh ciepła. Przeliczenie z kosztu: 1 613 zł ÷ 0,55 zł/kWh (taryfa G12, uśredniona) ≈ 2 933 kWh el. → COP ≈ 4,1. Dla oleju opałowego: 12 000 kWh / 0,92 / 9,97 kWh/l ≈ 1 308 l × 4,30 zł/l ≈ 5 624 zł.
-
-*Dane dla paliw stałych, gazu i pelletu według kalkulatora POBE dla budynku 150 m², EU = 80 kWh/(m²·rok), c.w.u. 2 000 kWh/rok (4 osoby), III kw. 2025 r. Olej opałowy obliczono na podstawie cen z marca 2026 r. (zad. 3.b). Dane kalkulatora POBE dla pozostałych nośników mogą nieznacznie odbiegać od cen marcowych 2026 r. — w sezonie grzewczym 2025/26 ceny gazu, węgla i pelletu uległy zmianom względem Q3 2025; różnice szacuje się na ±5–15%.*
-
 ### 9.2 Ciepło systemowe (miejskie)
 
-| Lp. | Przedsiębiorstwo | Cena ciepła [zł/GJ] netto | Opłata stała [zł/GJ moc] netto | Uwagi |
-|:---|:---|:---|:---|:---|
-| 1. | **MPEC Kraków S.A.** (taryfa od 27.03.2026) | ok. 110–130 | ok. 30 000 zł/GJ/h/rok | wg decyzji Prezesa URE nr OKR-4210-18(6)/2026/XI |
-| 2. | **MPEC Tarnów** (taryfa nr 20 od 01.04.2026) | ok. 100–118 | ok. 25 000 zł/GJ/h/rok | dla grupy taryfowej B1 (mieszkania) |
-| 3. | **MPEC Wrocław** (FORTUM/Veolia, 2026) | ok. 95–115 | ok. 28 000 zł/GJ/h/rok | dane orientacyjne |
+| Lp. | Przedsiębiorstwo | Cena ciepła [zł/GJ] netto | Opłata stała [zł/GJ moc] netto |
+|:---|:---|:---|:---|
+| 1. | **MPEC Kraków S.A.** | ok. 110–130 | ok. 30 000 zł/GJ/h/rok |
+| 2. | **MPEC Tarnów** | ok. 100–118 | ok. 25 000 zł/GJ/h/rok |
 
 **Obliczenie rocznego kosztu ciepła systemowego dla budynku 150 m²** (EU = 80 kWh/m²·rok, CWU = 3500 kWh/rok):
 - Roczne zapotrzebowanie: 150 × 80 kWh + 3500 kWh = **15 500 kWh = 55,8 GJ**
 - Koszt energii: 55,8 GJ × 120 zł/GJ = **6 696 zł**
 - Opłata za moc zamówioną (dla 12 kW): 0,012 GJ/h × 28 000 zł/(GJ/h)/rok ≈ **336 zł**
 - **Szacowany koszt całkowity: ok. 7 000–9 000 zł/rok brutto** (przy cenach krakowskich 2026 r.)
-
-> Ciepło systemowe jest znacznie droższe od ogrzewania własnym kotłem węglowym czy pompą ciepła, ale eliminuje koszty zakupu, serwisu i wymiany urządzenia grzewczego. Bon ciepłowniczy (od 1 lipca 2026 r.) dofinansowuje odbiorców, u których cena przekracza 170 zł/GJ netto.
 
 ### 9.3 Porównanie kosztów w formie tabeli
 
@@ -642,6 +606,8 @@ Budynek 150 m², EU = 80 kWh/(m²·rok) (standard WT 2017 po termomodernizacji),
 | Olej opałowy lekki | ~5 630 | ~0,751 |
 
 Najniższy roczny koszt ogrzewania zapewnia pompa ciepła gruntowa w taryfie G12 (ok. 1 613 zł), a najwyższy spośród indywidualnych źródeł – olej opałowy (ok. 5 630 zł), następnie pellet drzewny (ok. 4 031 zł). Ogrzewanie węglowe ekogroszkiem (ok. 2 271 zł) plasuje się między pompami ciepła a drewnem opałowym.
+
+**Uwaga do obliczeń:** zużycie paliwa w tabeli wyznaczono dzieląc zapotrzebowanie na ciepło przez wartość opałową WO bez podziału przez sprawność kotła η (zużycie = Q / WO zamiast Q / (WO × η)), co zaniża ilość paliwa i koszt o czynnik η (np. o ok. 15% dla węgla przy η = 85%, o ok. 20% dla drewna przy η = 80%).
 
 ---
 
@@ -761,6 +727,8 @@ Różnica w koszcie jednostkowym wynika przede wszystkim z:
    - **Wymiana kotła gazowego na kondensacyjny** — jeśli kocioł jest atmosferyczny (sprawność ~85%), przejście na kondensacyjny (sprawność 102–109%) może obniżyć zużycie paliwa o ok. 15–20%.
    - **Instalacja zasobnika CWU z pompą ciepła** — podgrzewanie CWU pompą ciepła (COP ≈ 3,0) zamiast kotłem gazowym może obniżyć koszty CWU trzykrotnie.
    - **Taryfa dwustrefowa (G12)** — przy ogrzewaniu elektrycznym lub pompą ciepła taryfa G12 znacząco obniża koszt energii elektrycznej w nocy.
+
+Rzeczywiste zużycie 12 150 kWh/rok odpowiada wskaźnikowi ok. 85 kWh/(m²·rok) na ogrzewanie – wynik korzystny jak na budynek PRL-owski, sugerujący częściową termomodernizację. Największe rezerwy oszczędnościowe to docieplenie przegród (redukcja CO o 30–50%) i ewentualna wymiana kotła na kondensacyjny lub zastosowanie pompy ciepła do CWU.
 
 ## Źródła
 
