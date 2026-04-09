@@ -10,5 +10,6 @@ dependencies = [
     "matplotlib>=3.10.8",
     "pandas>=3.0.1",
     "python-docx>=1.2.0",
+    "requests>=2.33.1",
     "weasyprint>=68.1",
 ]
