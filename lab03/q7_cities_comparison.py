@@ -22,6 +22,7 @@ cities = [
     ("Marseille",   "FR", 43.3,   5.4),
     ("Madrid",      "ES", 40.4,  -3.7),
     ("Seville",     "ES", 37.4,  -5.9),
+    ("Milan",       "IT", 45.5,   9.2),
     ("Rome",        "IT", 41.9,  12.5),
     ("Palermo",     "IT", 38.1,  13.4),
     ("Athens",      "GR", 37.9,  23.7),

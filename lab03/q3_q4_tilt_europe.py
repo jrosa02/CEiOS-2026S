@@ -61,5 +61,10 @@ for name, lat, lon in locations:
 lats = np.array([r[1] for r in results])
 angles = np.array([r[3] for r in results])
 coeffs = np.polyfit(lats, angles, 1)
+predicted = np.polyval(coeffs, lats)
+ss_res = np.sum((angles - predicted) ** 2)
+ss_tot = np.sum((angles - angles.mean()) ** 2)
+r2 = 1 - ss_res / ss_tot
 print(f"\nLinear fit: optimal_angle ≈ {coeffs[0]:.3f} × lat + ({coeffs[1]:.2f})")
+print(f"R² = {r2:.4f}")
 print(f"Angle range: {angles.min():.1f}° – {angles.max():.1f}°")

@@ -159,6 +159,14 @@ li {
     margin-bottom: 3pt;
 }
 
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 8pt auto;
+}
+
 /* Horizontal rule */
 hr {
     border: none;
@@ -215,7 +223,18 @@ _LATEX_SUBS = [
     (r"\\times",  "×"),
     (r"\\Delta",  "Δ"),
     (r"\\delta",  "δ"),
+    (r"\\alpha",  "α"),
+    (r"\\beta",   "β"),
+    (r"\\gamma",  "γ"),
+    (r"\\lambda", "λ"),
+    (r"\\mu",     "μ"),
+    (r"\\sigma",  "σ"),
     (r"\\eta",    "η"),
+    (r"\\theta",  "θ"),
+    (r"\\varphi", "φ"),
+    (r"\\phi",    "φ"),
+    (r"\\psi",    "ψ"),
+    (r"\\omega",  "ω"),
     (r"\\pi",     "π"),
     (r"\\approx", "≈"),
     (r"\\leq",    "≤"),
@@ -256,7 +275,9 @@ def latex_to_html(md_text: str) -> str:
     def replace_inline(m: re.Match) -> str:
         return _latex_to_text(m.group(1))
 
+    md_text = re.sub(r"\$\$(.*?)\$\$",  replace_display, md_text, flags=re.DOTALL)
     md_text = re.sub(r"\\\[(.*?)\\\]", replace_display, md_text, flags=re.DOTALL)
+    md_text = re.sub(r"\$([^\$\n]+?)\$", replace_inline, md_text)
     md_text = re.sub(r"\\\((.*?)\\\)", replace_inline,  md_text)
     return md_text
 
