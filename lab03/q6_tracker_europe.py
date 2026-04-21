@@ -25,15 +25,18 @@ locations = [
     ("Romania/Bucharest", 44.4, 26.1),
 ]
 
-def get_annual_yield(lat, lon, trackingtype=0):
+def get_annual_yield(lat, lon, trackingtype=0, optimalinclination=0):
     """Get annual PV yield using seriescalc with tracking option"""
-    r = requests.get(BASE_SERIES, params=dict(
+    params = dict(
         lat=lat, lon=lon,
         peakpower=1, loss=14,
         pvcalculation=1,
         trackingtype=trackingtype,
         outputformat="json"
-    ))
+    )
+    if optimalinclination:
+        params["optimalinclination"] = 1
+    r = requests.get(BASE_SERIES, params=params)
     data = r.json()
     hourly = data["outputs"]["hourly"]
     return sum(h["P"] for h in hourly if "P" in h)
@@ -43,6 +46,6 @@ print("-" * 67)
 
 for name, lat, lon in locations:
     e_fixed   = get_annual_yield(lat, lon, trackingtype=0)
-    e_tracker = get_annual_yield(lat, lon, trackingtype=1)
+    e_tracker = get_annual_yield(lat, lon, trackingtype=4, optimalinclination=1)
     gain = (e_tracker - e_fixed) / e_fixed * 100 if e_fixed > 0 else 0
     print(f"{name:<24} {lat:>5.1f} {e_fixed:>9.1f}   {e_tracker:>10.1f}   {gain:>8.1f}%")

@@ -105,34 +105,34 @@ Polska leży w wąskim przedziale szerokości geograficznych (50°–54°N), co 
 
 ## 6. Jakiego przyrostu produkcji energii z systemu fotowoltaicznego można się spodziewać w Europie dzięki zastosowaniu jednoosiowego trackera?
 
-*Dane z API PVGIS endpoint `seriescalc` (pole `P` — moc godzinowa [Wh]) dla 20 miast europejskich; zsumowany roczny uzysk porównano dla systemu stałego (`trackingtype=0`) i jednoosiowego trackera poziomego (`trackingtype=1`).*
+*Dane z API PVGIS endpoint `seriescalc` (pole `P` — moc godzinowa [Wh]) dla 20 miast europejskich; zsumowany roczny uzysk porównano dla systemu stałego (`trackingtype=0`) i jednoosiowego trackera nachylonego pod optymalnym kątem (`trackingtype=4`, `optimalinclination=1`).*
 
-| Lokalizacja | Szer. geogr. [°N] | E_y stały [kWh/kWp/rok] | E_y tracker [kWh/kWp/rok] | Przyrost [%] |
+| Lokalizacja | Szer. geogr. [°N] | E_y stały [Wh/rok] | E_y tracker [Wh/rok] | Przyrost [%] |
 |:---|:---:|:---:|:---:|:---:|
-| Norway/Oslo | 59,9 | 865 | 1281 | 48,1 |
-| Sweden/Stockholm | 59,3 | 924 | 1370 | 48,3 |
-| Finland/Helsinki | 60,2 | 918 | 1352 | 47,2 |
-| UK/London | 51,5 | 993 | 1374 | 38,3 |
-| Ireland/Dublin | 53,3 | 927 | 1261 | 36,0 |
-| Germany/Berlin | 52,5 | 1025 | 1436 | 40,2 |
-| **Poland/Warsaw** | **52,2** | **1024** | **1427** | **39,4** |
-| France/Paris | 48,8 | 1134 | 1584 | 39,7 |
-| Czechia/Prague | 50,1 | 1076 | 1491 | 38,5 |
-| Austria/Vienna | 48,2 | 1152 | 1596 | 38,6 |
-| Switzerland/Bern | 46,9 | 1207 | 1689 | 39,9 |
-| Croatia/Zagreb | 45,8 | 1223 | 1676 | 37,1 |
-| Italy/Rome | 41,9 | 1481 | 2113 | 42,6 |
-| Spain/Madrid | 40,4 | 1610 | 2334 | 44,9 |
-| Spain/Seville | 37,4 | 1689 | 2421 | 43,4 |
-| Portugal/Lisbon | 38,7 | 1622 | 2316 | 42,8 |
-| Greece/Athens | 37,9 | 1662 | 2328 | 40,1 |
-| Malta/Valletta | 35,9 | 1720 | 2392 | 39,1 |
-| Cyprus/Nicosia | 35,2 | 1730 | 2399 | 38,7 |
-| Romania/Bucharest | 44,4 | 1301 | 1775 | 36,4 |
+| Norwegia/Oslo | 59,9 | 13 844 532 | 19 320 123 | 39,6 |
+| Szwecja/Sztokholm | 59,3 | 14 785 609 | 20 194 876 | 36,6 |
+| Finlandia/Helsinki | 60,2 | 14 693 393 | 20 052 962 | 36,5 |
+| Wielka Brytania/Londyn | 51,5 | 15 894 819 | 20 469 011 | 28,8 |
+| Irlandia/Dublin | 53,3 | 14 835 029 | 19 138 833 | 29,0 |
+| Niemcy/Berlin | 52,5 | 16 399 212 | 21 080 309 | 28,5 |
+| **Polska/Warszawa** | **52,2** | **16 387 989** | **20 825 266** | **27,1** |
+| Francja/Paryż | 48,8 | 18 145 533 | 23 065 030 | 27,1 |
+| Czechy/Praga | 50,1 | 17 218 120 | 21 860 111 | 27,0 |
+| Austria/Wiedeń | 48,2 | 18 431 093 | 23 371 416 | 26,8 |
+| Szwajcaria/Berno | 46,9 | 19 316 658 | 24 807 549 | 28,4 |
+| Chorwacja/Zagrzeb | 45,8 | 19 566 773 | 24 328 727 | 24,3 |
+| Włochy/Rzym | 41,9 | 23 702 238 | 30 191 924 | 27,4 |
+| Hiszpania/Madryt | 40,4 | 25 762 201 | 33 075 089 | 28,4 |
+| Hiszpania/Sewilla | 37,4 | 27 023 396 | 33 992 064 | 25,8 |
+| Portugalia/Lizbona | 38,7 | 25 950 059 | 32 114 920 | 23,8 |
+| Grecja/Ateny | 37,9 | 26 597 715 | 32 644 390 | 22,7 |
+| Malta/Valletta | 35,9 | 27 523 849 | 33 327 268 | 21,1 |
+| Cypr/Nikozja | 35,2 | 27 672 052 | 33 628 563 | 21,5 |
+| Rumunia/Bukareszt | 44,4 | 20 816 173 | 25 804 562 | 24,0 |
 
-**Zakres przyrostu w Europie: ok. 36–48%.** Największy przyrost odnotowano w **krajach skandynawskich** (Norwegia, Szwecja, Finlandia: ~47–48%), co jest pozornie sprzeczne z intuicją. Wyjaśnienie: na dużych szerokościach geograficznych słońce latem opisuje bardzo szeroki łuk po niebie — wschodzi na północno-wschodzie i zachodzi na północno-zachodzie. Tracker poziomy, śledzący ruch słońca ze wschodu na zachód, pozwala w tych warunkach uchwycić znacznie więcej energii niż moduł stały. Na południu Europy słońce kulminuje wyżej i porusza się po krótszym łuku, więc zysk z trackera jest proporcjonalnie mniejszy.
+**Zakres przyrostu w Europie: ok. 21–40%.** Użyty tracker nachylony (`trackingtype=4`, `optimalinclination=1`) obraca moduł wokół osi pochylonej pod optymalnym kątem dla danej szerokości geograficznej, śledząc ruch słońca po azymucie przez cały dzień. Największy przyrost odnotowano w **krajach skandynawskich** (Norwegia: 39,6%, Szwecja: 36,6%, Finlandia: 36,5%) — wynika to z tego, że na wysokich szerokościach geograficznych słońce latem opisuje bardzo szeroki łuk po niebie, a nachylona oś trackera pozwala optymalnie chwytać promieniowanie bezpośrednie przez cały długi dzień polarny. Na południu Europy słońce kulminuje wyżej, ale porusza się po węższym łuku, a udział promieniowania rozproszonego jest mniejszy — stąd niższe przyrosty względne (Cypr: 21,5%, Malta: 21,1%).
 
-**Polska (Warszawa): przyrost ~39,4%** — wartość typowa dla środkowej Europy.
+**Polska (Warszawa): przyrost ~27,1%** — wartość typowa dla środkowej Europy.
 
 
 
@@ -277,6 +277,12 @@ Europa wyróżnia się **najniższą średnią** (1271 kWh/m²/rok) i **najwięk
 W Niemczech mechanizm **automatycznej degresji** (~5% rocznie) — im więcej instalacji, tym niższe stawki dla kolejnych — tworzył naturalny hamulec wzrostu i utrzymywał rentowność inwestycji na umiarkowanym poziomie [2]. W Hiszpanii brak degresji i brak limitu mocy, w połączeniu z dwukrotnie wyższym nasłonecznieniem, spowodowały, że rentowność inwestycji PV była wyjątkowo wysoka i atrakcyjna spekulacyjnie. W 2008 r. zainstalowano **2 708 MW** (limit przewidziany dekretem: ~371 MW), co wygenerowało wieloletnie zobowiązania finansowe państwa [2]. Deficyt taryfowy (*déficit tarifario*) przekroczył na koniec 2012 r. **29 mld €** (~3% PKB Hiszpanii), zmuszając rząd do retroaktywnego obcięcia stawek w 2013 r. (RDL 2/2013) i wywołując falę procesów arbitrażowych [1].
 
 Zasadnicza różnica między oboma krajami leżała nie w wysokości samej taryfy, lecz w **konstrukcji systemu**: brak mechanizmu korekty i lepsze warunki słoneczne przekształciły instrument wsparcia OZE w narzędzie spekulacji inwestycyjnej.
+
+
+
+## Podsumowanie
+
+Ćwiczenie pokazało, że efektywność systemów fotowoltaicznych jest silnie zdeterminowana przez położenie geograficzne — przede wszystkim przez szerokość geograficzną. Optymalny kąt pochylenia modułów rośnie monotonicznie z szerokością geograficzną według relacji α ≈ 0,44·φ + 17° (R² = 0,85); dla Polski wynosi ok. 40° i jest wyjątkowo jednorodny w skali całego kraju. Polska osiąga nasłonecznienie rzędu 1026–1090 kWh/m²/rok — porównywalne z Niemcami i Wielką Brytanią, lecz dwukrotnie niższe niż najlepsze lokalizacje świata (Arabia Saudyjska, Sahara ~2100–2140 kWh/m²/rok). Zastosowanie jednoosiowego trackera nachylonego pod optymalnym kątem zwiększa roczny uzysk energii w Europie o 21–40%, przy czym największy zysk odnotowują kraje skandynawskie (ok. 37–40%) ze względu na szeroki łuk słońca latem; dla Polski przyrost wynosi ~27%. Analiza polityki taryf gwarantowanych wykazała, że ten sam instrument FiT dał stabilny rozwój rynku w Niemczech (mechanizm degresji) i doprowadził do kryzysu w Hiszpanii (brak degresji + dwukrotnie wyższe nasłonecznienie), co potwierdza konieczność kalibrowania stawek do lokalnych zasobów słonecznych.
 
 **Źródła:**
 [1] Johannesson Linden A., Kalantzis F., Maincent E., Pienkowski J., *Electricity Tariff Deficit: Temporary or Permanent Problem in the EU?*, European Economy — Economic Papers No. 534, European Commission DG ECFIN, October 2014. https://ec.europa.eu/economy_finance/publications/economic_paper/2014/pdf/ecp534_en.pdf
