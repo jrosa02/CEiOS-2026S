@@ -25,6 +25,7 @@ def call_shscalc(peakpower, angle):
         lat=LAT, lon=LON,
         raddatabase="PVGIS-SARAH3",
         peakpower=peakpower,
+        loss=14,
         batterysize=NOMINAL_BATTERY_WH,
         cutoff=CUTOFF_PCT,
         consumptionday=CONSUMPTION_DAY_WH,
@@ -94,6 +95,16 @@ print()
 if best_peakpower is None:
     print("UWAGA: Żadna kombinacja nie osiągnęła f_e=0% — rozszerz zakres mocy!")
 else:
+    # Choose angle with lowest December+January E_lost_d (= best winter coverage)
+    winter_loss_by_angle = {}
+    for angle in ANGLES:
+        _, data = grid_results[(best_peakpower, angle)]
+        monthly = data["outputs"]["monthly"]
+        winter_loss = (monthly[11].get("E_lost_d", 0) + monthly[0].get("E_lost_d", 0))
+        winter_loss_by_angle[angle] = winter_loss
+    best_angle = max(winter_loss_by_angle, key=winter_loss_by_angle.get)
+    print(f"Straty E_lost_d (Sty+Gru) wg kąta: { {a: f'{v:.1f}' for a,v in winter_loss_by_angle.items()} }")
+    print(f"→ Wybrany kąt zimowy: {best_angle}° (maksymalna produkcja zimowa → największy margines)\n")
     print(f"=== Rekomendacja projektowa ===")
     print(f"  Minimalna moc PV: {best_peakpower} Wp")
     print(f"  Optymalny kąt nachylenia: {best_angle}°")
@@ -107,16 +118,15 @@ else:
     totals = best_data["outputs"]["totals"]
 
     print(f"--- Miesięczny bilans energetyczny (moc={best_peakpower} Wp, kąt={best_angle}°) ---")
-    print(f"{'Miesiąc':>8} | {'Produkcja[Wh/d]':>16} | {'Zapotrzeb.[Wh/d]':>17} | {'Nadwyżka[Wh/d]':>15} | {'f_e[%]':>8} | {'f_f[%]':>8}")
-    print("-" * 85)
+    print(f"{'Miesiąc':>8} | {'Dostarczona[Wh/d]':>18} | {'Zapotrzeb.[Wh/d]':>17} | {'Straty[Wh/d]':>13} | {'f_e[%]':>8} | {'f_f[%]':>8}")
+    print("-" * 88)
 
     for i, m in enumerate(monthly):
         e_d = m.get("E_d", 0)
         e_lost = m.get("E_lost_d", 0)
         fe = m.get("f_e", 0)
         ff = m.get("f_f", 0)
-        surplus = e_d - CONSUMPTION_DAY_WH
-        print(f"{MONTHS_PL[i]:>8} | {e_d:>16.1f} | {CONSUMPTION_DAY_WH:>17.1f} | {surplus:>+15.1f} | {fe:>8.1f} | {ff:>8.1f}")
+        print(f"{MONTHS_PL[i]:>8} | {e_d:>18.1f} | {CONSUMPTION_DAY_WH:>17.1f} | {e_lost:>13.1f} | {fe:>8.1f} | {ff:>8.1f}")
 
     print()
     e_miss_annual = totals.get("E_miss", 0)

@@ -1,6 +1,6 @@
 # Sprawozdanie z ćwiczenia nr 4: Czyste energie i ochrona środowiska
 
-**Data wykonania:** 23.04.2026  
+**Data wykonania:** 05.05.2026  
 **Przedmiot:** Czyste energie i ochrona środowiska 2026  
 **Ćwiczenie:** 4 – Portal PVGIS (Photovoltaic Geographical Information System) – źródło wiedzy oraz użyteczne narzędzia z zakresu energetyki słonecznej.  
 **Autor:** Jan Rosa
@@ -21,37 +21,19 @@
 | **PVGIS-ERA5 / ERA5-Land** | reanaliza            | globalny zasięg                                  | ~0.25° (~25 km)      | 2005–2023      | ECMWF ERA5      | fallback (brak satelitów)               |
 | **PVGIS-SARAH (legacy)**   | satelitarne          | Europa, Afryka                                   | ~0.05°               | 2005–2016      | CM SAF          | wycofana                                                       |
 
-### Hierarchia użycia danych
+Portal stosuje satelitarne bazy SARAH3/NSRDB tam gdzie to możliwe; ERA5 jedynie jako fallback globalny (rozdzielczość ~25 km, 5× gorsza od SARAH). Źródło: [JRC PVGIS 5.3](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/pvgis-releases/pvgis-53_en).
 
-PVGIS stosuje następującą kolejność wyboru danych:
-
-1. **SARAH3** → Europa / Afryka / część Azji
-2. **NSRDB** → Ameryki
-3. **ERA5** → globalny fallback (obszary bez satelitów)
-
-Zgodnie z JRC:
-
-* dane **satelitarne mają pierwszeństwo**
-* ERA5 jest używany tylko tam, gdzie brak pokrycia satelitarnego
-
-### Charakterystyka metodologiczna
-
-* **SARAH / NSRDB** — dane satelitarne; rozdzielczość ~5 km i ~4 km
-* **ERA5** — reanaliza modelu atmosferycznego ECMWF; rozdzielczość ~25 km (5× gorsza od SARAH)
-
-### Źródło:
-
-[https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/pvgis-releases/pvgis-53_en](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/pvgis-releases/pvgis-53_en)
+Dla zastosowań na terenie Polski zalecana jest PVGIS-SARAH3 — domyślna, o najwyższej rozdzielczości i najdłuższym pokryciu czasowym spośród dostępnych baz europejskich.
 
 ---
 
 ## 2. Miesięczne nasłonecznienie dla miejsca zamieszkania
 
-> Pobierz w formie raportów pdf dane o miesięcznym nasłonecznieniu dla miejsca Twojego zamieszkania i w uproszczonej formie (np. wykresy) zamieść ich najistotniejsze fragmenty w sprawozdaniu. Najlepiej do tego celu wykorzystać plik TMY.
+> Pobierz w formie raportów pdf dane o miesięcznym nasłonecznieniu dla miejsca Twojego zamieszkania i zamieść w sprawozdaniu. Najlepiej do tego celu wykorzystać plik TMY.
 
-Analiza parametrów radiacyjnych dla lokalizacji miejsca zamieszkania (Prądnik Czerwony, Kraków) przeprowadzona w oparciu o bazę **PVGIS-SARAH3** (rok 2022).
+Dane pobrano z **PVGIS-SARAH3** dla Prądnik Czerwony, Kraków (rok 2022).
 
-### Miesięczne sumy promieniowania — Kraków 2022
+### Miesięczne sumy promieniowania
 
 | Miesiąc | H(h) [kWh/m²] | H(i_opt) [kWh/m²] | H(i=40°) [kWh/m²] | Gb(n) [kWh/m²] | Kd [-] |
 |---------|:-------------:|:-----------------:|:-----------------:|:--------------:|:------:|
@@ -71,22 +53,17 @@ Analiza parametrów radiacyjnych dla lokalizacji miejsca zamieszkania (Prądnik 
 
 *H(h) — irradiancja horyzontalna; H(i_opt) — irradiancja pod kątem optymalnym (38°); H(i=40°) — irradiancja pod wybranym kątem; Gb(n) — promieniowanie bezpośrednie normalne; Kd — wskaźnik rozproszenia. Źródło: PVGIS-SARAH3.*
 
-### Analiza insolacji i kątów nachylenia
-
-  * **Ekstrema:** Maksymalna irradiancja horyzontalna H(h) wyniosła w czerwcu 2022 (**189,0 kWh/m²**), minimalna w grudniu 2022 — **19,2 kWh/m²**.
-  * **Optymalizacja:** Średnioroczny kąt nachylenia płaszczyzny odbiorczej wynosi **38°**, wybrany kąt to **40°** (zaokrąglenie do pełnej dziesiątki, które nieznacznie przesuwa optimum w kierunku okresu zimowego, gdy kąt elewacji Słońca jest niski). Zastosowanie nachylenia optymalnego w stosunku do poziomego zwiększa uzysk w styczniu o ok. **89%**.
+Maksymalna irradiancja horyzontalna wyniosła w czerwcu 189,0 kWh/m², minimalna w grudniu 19,2 kWh/m² — stosunek 10:1. Optymalny kąt nachylenia to **38°** (wybrano 40° — zaokrąglenie nieznacznie faworyzuje zimę). Przy nachyleniu optymalnym uzysk w styczniu jest o 89% wyższy niż na płaszczyźnie poziomej.
 
 ![home_solar_irradiation](./imgs/home_solar_irradiation.png "Rys. 1. Sumy miesięczne irradiancji $H(h)$ oraz $H(i\_opt)$.")
 
-### Składowe promieniowania i warunki atmosferyczne
-
-  * **Wskaźnik rozproszenia ($K_d$):** W okresie zimowym dominuje promieniowanie rozproszone ($K_d > 0,6$). Najwyższą klarowność atmosfery odnotowano w marcu 2022 ($K_d = 0,34$).
-  * **Wpływ horyzontu:** Symulacja uwzględnia model wysokościowy terenu (DEM), ograniczający dostęp do bezpośredniego promieniowania przy niskich kątach elewacji Słońca (szczególnie w kwartale zimowym).
-  * **Termika:** Średnie temperatury dobowe w szczycie insolacji (czerwiec-sierpień) wynoszą **17–20°C**; temperatura ogniwa przy nasłonecznieniu 1000 W/m² wynosi ok. 40–45°C, co przy typowym współczynniku temperaturowym −0,40%/°C (krzemowe moduły polikrystaliczne) daje straty sprawności rzędu **6–8%** względem STC.
+W zimie dominuje promieniowanie rozproszone (Kd > 0,6 w grudniu i listopadzie). Najczyściejsze niebo w 2022 roku notował marzec (Kd = 0,34).
 
 ![home_diffuse2global](./imgs/home_diffuse2global.png "Rys. 2. Rozkład wskaźnika rozproszenia Kd w cyklu rocznym.")
 
 ![home_horizon_line](./imgs/home_horizon_line.png "Rys. 3. Profil przeszkód terenowych (Horizon height).")
+
+Roczna suma GHI wynosi 1197,4 kWh/m², przy wyraźnej asymetrii sezonowej — zimą promieniowanie jest 10-krotnie niższe niż latem.
 
 ---
 
@@ -96,7 +73,7 @@ Analiza parametrów radiacyjnych dla lokalizacji miejsca zamieszkania (Prądnik 
 
 Dla warunków Polski najbardziej odpowiednią bazą danych w PVGIS jest **PVGIS-SARAH3**.
 
-PVGIS-SARAH3 obejmuje Europę (domyślna baza w regionie), dostarcza dane satelitarne o rozdzielczości ~5 km (vs ~25 km dla ERA5) i obejmuje okres 2005–2023 (vs 2005–2020 dla SARAH2). Roczna suma GHI dla Krakowa z SARAH3 wynosi 1140,7 kWh/m² (rok 2023).
+PVGIS-SARAH3 obejmuje Europę, dostarcza dane satelitarne o rozdzielczości ~5 km (5× lepsza od ERA5) i pokrywa lata 2005–2023 (dłużej niż SARAH2).
 
 ---
 
@@ -104,7 +81,7 @@ PVGIS-SARAH3 obejmuje Europę (domyślna baza w regionie), dostarcza dane sateli
 
 > Dla swojego miejsca zamieszkania, wykorzystując bazę danych pogodowych wskazaną w pkt.3 przeanalizuj dzienną dostępność promieniowania słonecznego na płaszczyźnie skierowanej na południe i pochylonej pod kątem 35° oraz na płaszczyźnie śledzącej pozycję Słońca. W sprawozdaniu umieść odpowiednie wykresy dla następujących miesięcy: czerwiec, wrzesień i grudzień.
 
-Analiza oparta na godzinowych danych PVGIS-SARAH3 dla roku 2023. Porównano dwa układy: **stacjonarny** (nachylenie 35°, azymut 0° — południe) oraz **nadążny 2-osiowy** (śledzenie zarówno azymutu, jak i elewacji Słońca).
+Porównano dwa układy: **stacjonarny** (35°, azymut 0°) i **nadążny 2-osiowy**, na podstawie danych PVGIS-SARAH3.
 
 ![q4_daily_profiles](./imgs/q4_daily_profiles.png "Rys. 4. Średni dobowy profil mocy PV [W/kWp] dla układu stacjonarnego 35° i nadążnego 2-osiowego — Kraków 2023.")
 
@@ -114,7 +91,9 @@ Analiza oparta na godzinowych danych PVGIS-SARAH3 dla roku 2023. Porównano dwa 
 | Wrzesień | 3,86 | 3,94 | +1,9% |
 | Grudzień | 1,09 | 1,30 | +19,6% |
 
-Czerwiec: długi dzień słoneczny, Słońce wysoko (elewacja ~63° w południe) — profil szeroki, płaski. Zysk z śledzenia pochodzi głównie z godzin porannych i wieczornych, gdy Słońce jest nisko i panel stacjonarny jest źle ustawiony do azymutu. Wrzesień: krótszy dzień, Słońce niżej — profil węższy. Zysk z śledzenia minimalny, ponieważ dzień jest już krótszy i kąt elewacji w południe (~37°) jest bliski kątowi nachylenia panelu. Grudzień: bardzo krótki dzień (ok. 8 h), elewacja ~17° w południe — profil wąski. Zysk 2-osiowego śledzenia (+19,6%) jest tu największy, bo panel stacjonarny 35° jest słabo skierowany do nisko stojącego Słońca.
+Zysk z śledzenia jest największy w grudniu (+19,6%) — Słońce jest nisko (~17°), więc panel stacjonarny ma duże odchylenie kątowe od kierunku na Słońce. We wrześniu elewacja południa (~37°) jest bliska kątowi nachylenia panelu i zysk spada do +1,9%. W czerwcu zysk całodzienny wynosi +10,0%, choć w południe tylko +1,4% — śledzenie opłaca się głównie w godzinach rannych i wieczornych.
+
+Śledzenie dwuosiowe daje największy przyrost zimą; latem korzyść jest ograniczona przez wysokie Słońce i dużą składową rozproszoną.
 
 ---
 
@@ -122,15 +101,17 @@ Czerwiec: długi dzień słoneczny, Słońce wysoko (elewacja ~63° w południe)
 
 > Na podstawie analizy z pkt 4 określ w procentach ile całkowitego promieniowania słonecznego pochłaniają chmury w okolicach południa słonecznego (wtedy gdy wartość promieniowania słonecznego jest największa). Porównania dokonaj dla trzech wymienionych wyżej miesięcy.
 
-Analiza oparta na wskaźniku rozproszenia Kd = Gd(i)/G(i) wyznaczonym dla godzin 11:00–13:00 (okolice południa słonecznego) w danych godzinowych PVGIS-SARAH3 2023. Szacunkowy udział pochłoniętego promieniowania obliczono jako: (Kd − 0,15) / 0,85 × 100%, gdzie 0,15 jest typową wartością Kd przy bezchmurnym niebie.
+Wskaźnik rozproszenia Kd = Gd(i)/G(i) obliczono z danych godzinowych dla przedziału 11:00–13:00.
 
-| Miesiąc | G(35°) południe [W/m²] | Kd | Pochłoniête przez chmury [%] |
-|---------|:---------------------:|:--:|:---------------------------:|
-| Czerwiec | 575 | 0,615 | ~54,7% |
-| Wrzesień | 612 | 0,459 | ~36,3% |
-| Grudzień | 178 | 0,718 | ~66,9% |
+| Miesiąc | G(35°) południe [W/m²] | Kd [-] | Charakter nieba |
+|---------|:---------------------:|:------:|:---------------:|
+| Czerwiec | 575 | 0,615 | zachmurzone (Kd > 0,5) |
+| Wrzesień | 612 | 0,459 | mieszane (0,3 < Kd ≤ 0,5) |
+| Grudzień | 178 | 0,718 | silnie rozproszone (Kd > 0,5) |
 
-Grudzień charakteryzuje się najsilniejszym wpływem zachmurzenia — chmury pochłaniają ok. 67% potencjalnego promieniowania w okolicach południa. Czerwiec wykazuje umiarkowane zachmurzenie (Kd ≈ 0,62). Wrzesień jest miesiącem o najczystszej atmosferze (Kd ≈ 0,46), chmury pochłaniają ok. 36% promieniowania.
+Grudzień ma najwyższy Kd (0,718) — promieniowanie jest prawie całkowicie rozproszone. Wrzesień jest najbardziej klarowny (Kd = 0,459). Czerwiec osiąga Kd = 0,615 pomimo długiego dnia — letnie zachmurzenie konwekcyjne skutecznie rozprasza promieniowanie.
+
+W Krakowie promieniowanie południa jest wyraźnie rozproszone przez większą część roku; wyjątkiem są marzec i wrzesień.
 
 ---
 
@@ -144,7 +125,9 @@ Grudzień charakteryzuje się najsilniejszym wpływem zachmurzenia — chmury po
 | Wrzesień | +1,9% |
 | Grudzień | +22,0% |
 
-W okolicach południa słonecznego zysk z śledzenia jest **największy w grudniu** (+22%). Wynika to z niskiej elewacji Słońca (~17°): kąt padania promieniowania na panel stacjonarny 35° wynosi w grudniu w południe |50,06° + 23,45° − 35°| ≈ **38°**, podczas gdy układ 2-osiowy utrzymuje kąt padania 0°. Latem (czerwiec) Słońce jest wysoko (~63°), a panel 35° jest do niego dobrze ustawiony — zysk w południe wynosi zaledwie 1,4%. Wniosek: śledzenie pozycji Słońca przynosi największy zysk **w południe zimą**, gdy elewacja Słońca jest niska i odbiega od kąta nachylenia panelu stacjonarnego. W skali całego dnia zysk latem jest wyższy dzięki godzinom porannym i wieczornym.
+W południe zysk z śledzenia jest **największy w grudniu** (+22%). Przy elewacji Słońca ~17° kąt padania na panel 35° wynosi θ = (90° − 35°) − 17° = **38°**, podczas gdy układ 2-osiowy zawsze trzyma θ = 0°. Latem Słońce jest wysoko (~63°) i panel 35° jest do niego dobrze ustawiony — zysk w południe to tylko 1,4%, ale godziny poranne i wieczorne dają dodatkowe 9% (całodniowy zysk w czerwcu: +10,0%).
+
+Śledzenie pozycji Słońca najbardziej opłaca się zimą, gdy kąt padania na panel stacjonarny jest duży.
 
 ---
 
@@ -152,7 +135,7 @@ W okolicach południa słonecznego zysk z śledzenia jest **największy w grudni
 
 > Dla swojego miejsca zamieszkania, dla bazy danych wybranej w pkt 3 zaimportuj godzinowy plik (w formacie csv) promieniowania słonecznego wraz z jego składowymi w płaszczyźnie horyzontalnej dla ostatniego roku, który jest dostępny w tej bazie. Fragment pliku wraz z nagłówkami kolumn umieść w sprawozdaniu.
 
-Pobrano plik CSV z godzinowymi danymi promieniowania dla Krakowa (PVGIS-SARAH3, rok 2023, płaszczyzna pozioma). Plik zawiera 8 760 rekordów godzinowych. Suma roczna GHI = **1140,7 kWh/m²**.
+Dane godzinowe PVGIS-SARAH3 dla płaszczyzny poziomej, rok 2023. Suma roczna GHI = **1140,7 kWh/m²**.
 
 ![q7_hourly_radiation](./imgs/q7_hourly_radiation.png "Rys. 5. Miesięczne sumy irradiancji poziomej (bezpośrednia + rozproszona) oraz średnie dobowe profile GHI dla wybranych miesięcy — Kraków 2023.")
 
@@ -167,6 +150,19 @@ Pobrano plik CSV z godzinowymi danymi promieniowania dla Krakowa (PVGIS-SARAH3, 
 | `WS10m` | Prędkość wiatru na wys. 10 m [m/s] |
 | `Int` | Flaga rekonstrukcji (1 = dane interpolowane) |
 
+Fragment danych (pierwsze 5 rekordów godzinowych, 1 stycznia 2023):
+
+```
+time,Gb(i),Gd(i),Gr(i),H_sun,T2m,WS10m,Int
+20230101:0010,0.0,0.0,0.0,0.0,11.93,4.21,0.0
+20230101:0110,0.0,0.0,0.0,0.0,12.11,4.07,0.0
+20230101:0210,0.0,0.0,0.0,0.0,12.23,4.07,0.0
+20230101:0310,0.0,0.0,0.0,0.0,12.23,4.07,0.0
+20230101:0410,0.0,0.0,0.0,0.0,12.05,4.0,0.0
+```
+
+Dane za rok 2023 obejmują 8760 rekordów godzinowych.
+
 ---
 
 ## 8. Charakterystyka sposobów śledzenia Słońca (Vertical axis, Inclined axis, Two axis)
@@ -175,23 +171,19 @@ Pobrano plik CSV z godzinowymi danymi promieniowania dla Krakowa (PVGIS-SARAH3, 
 
 ### Vertical axis (śledzenie azymutu — oś pionowa)
 
-Panel fotowoltaiczny obraca się wokół **pionowej osi** — śledzi zmianę azymutu Słońca w ciągu dnia (ruch wschód → południe → zachód). Kąt nachylenia panelu względem poziomu jest **stały**. System dobrze sprawdza się latem, gdy Słońce jest wysoko i przesuwa się po szerokim łuku. Zimą, przy niskim Słońcu, efektywność spada.
+Panel obraca się wokół pionowej osi — śledzi zmianę azymutu Słońca w ciągu dnia (wschód → południe → zachód). Kąt nachylenia względem poziomu jest stały i ustawiany raz — PVGIS może dobrać go automatycznie. System działa dobrze latem, gdy Słońce przemieszcza się po szerokim łuku. Zimą, przy niskim Słońcu, efektywność tego układu spada poniżej systemu stacjonarnego.
 
-**Parametry do ustawienia w PVGIS:** kąt nachylenia panelu (Slope [°]) — portal może dobrać go automatycznie jako wartość optymalną dla danej lokalizacji.
+### Inclined axis (śledzenie elewacji — oś pozioma N–S)
 
-### Inclined axis (śledzenie elewacji — oś pochylona)
-
-Panel obraca się wokół **osi pochylonej** (ukierunkowanej N–S i nachylonej pod pewnym kątem od poziomu). Śledzenie odbywa się głównie w płaszczyźnie zawierającej ruch Słońca przez południk — panel podąża za zmianą wysokości Słońca nad horyzontem w ciągu roku. Jest to kompromis między prostotą układu a zyskiem energetycznym i na szerokości Polski daje największy roczny przyrost produkcji spośród trzech opisanych systemów.
-
-**Parametry do ustawienia w PVGIS:** kąt nachylenia osi obrotu (Slope of the rotation axis [°]) — portal może dobrać go automatycznie.
+Panel obraca się wokół poziomej osi N–S, śledząc zmianę elewacji Słońca w ciągu dnia (wschód nisko → południe wysoko → zachód nisko). Azymut pozostaje stały. W południe — gdy większość promieniowania zimowego dociera do panelu — oś wymusza orientację zbliżoną do poziomej, co ogranicza uzysk. PVGIS dobiera kąt nachylenia osi automatycznie.
 
 ### Two axis (śledzenie pełne — dwie osie)
 
-Panel obraca się jednocześnie wokół **dwóch osi**: pionowej (azymut) i poziomej (elewacja). Zawsze jest ustawiony prostopadle do promieni słonecznych, co zapewnia maksymalne możliwe pochłanianie promieniowania bezpośredniego przez cały dzień i przez cały rok. Jest to technicznie najdokładniejszy układ, ale też najbardziej skomplikowany mechanicznie.
+Panel obraca się równocześnie wokół dwóch osi — pionowej i poziomej — zawsze wskazując prostopadle na Słońce. Daje najwyższy możliwy uzysk przez cały rok. Brak parametrów kątowych do ustawienia — obie osie sterowane automatycznie. Jest to też mechanicznie najbardziej złożony i kosztowny układ.
 
-**Parametry do ustawienia w PVGIS:** brak dodatkowych parametrów kątowych — obie osie są sterowane automatycznie tak, aby panel stale wskazywał Słońce.
+*Źródło: PVGIS User Manual v5.3.*
 
-*Źródło: PVGIS User Manual v5.3; Dąbrowski et al., Energies 2025, 18(10), 2553 — [doi:10.3390/en18102553](https://www.mdpi.com/1996-1073/18/10/2553)*
+Spośród trzech systemów two-axis daje najwyższy roczny uzysk, vertical axis jest skuteczny latem dzięki azymutalnej korekcie, inclined axis N-S przynosi umiarkowany zysk roczny z gorszymi wynikami zimowymi.
 
 ---
 
@@ -201,9 +193,11 @@ Panel obraca się jednocześnie wokół **dwóch osi**: pionowej (azymut) i pozi
 
 TMY (Typowy Rok Meteorologiczny) to **syntetyczny plik godzinowy** sklejony z 12 miesięcy, z których każdy pochodzi z innego roku historycznego. Nie odpowiada żadnemu rzeczywistemu rokowi — reprezentuje przeciętne warunki meteorologiczne dla danej lokalizacji. Dla PVGIS-SARAH3 podstawą jest 19 lat danych (2005–2023).
 
-Procedura opiera się na **metodzie Finkelstein-Schafer**: dla każdego z 12 miesięcy kalendarzowych PVGIS porównuje dystrybuantę (CDF) wybranych zmiennych (GHI, DNI, temperatura) z każdego dostępnego roku z dystrybuantą długookresową. Miesiąc, którego statystyka FS jest najmniejsza — czyli najbardziej zbliżony do wieloletniej normy — zostaje wybrany jako reprezentatywny. Wybrane 12 miesięcy sklejane są w plik 8 760 rekordów godzinowych, gotowy do użycia jako dane wejściowe symulacji systemów PV.
+Procedura opiera się na **metodzie Finkelstein-Schafer**: dla każdego miesiąca PVGIS porównuje dystrybuantę (CDF) wybranych zmiennych (GHI, DNI, temperatura) z każdego dostępnego roku z dystrybuantą długookresową. Miesiąc o najmniejszej statystyce FS — najlepiej odwzorowujący wieloletnią normę — zostaje wybrany jako reprezentatywny. Wybrane 12 miesięcy sklejane są w 8760 rekordów godzinowych.
 
-*Źródło: Huld T. et al., Solar Energy 2012; PVGIS User Manual v5.3.*
+*Źródło: PVGIS User Manual v5.3.*
+
+TMY nie odpowiada żadnemu rzeczywistemu rokowi, ale dobrze reprezentuje typowe warunki do projektowania systemów PV.
 
 ---
 
@@ -211,9 +205,9 @@ Procedura opiera się na **metodzie Finkelstein-Schafer**: dla każdego z 12 mie
 
 > Wymień dane umieszczone w plikach TMY na portalu PVGIS oraz określ rozdzielczość czasową tych plików (jaki zakres czasu przypisany jest pojedynczemu rekordowi).
 
-**Rozdzielczość czasowa:** 1 godzina — każdy rekord odpowiada jednej godzinie. Plik zawiera 8 760 rekordów (365 dni × 24 h).
+Rozdzielczość czasowa: 1 godzina (8760 rekordów na rok).
 
-Plik TMY w PVGIS zawiera nagłówek metadanych (współrzędne, wysokość, przesunięcie czasu nasłonecznienia) oraz tabelę informującą, z którego roku pochodzi każdy miesiąc. Po nagłówku następują dane godzinowe w kolumnach:
+Plik zawiera nagłówek metadanych (współrzędne, wysokość, przesunięcie czasu nasłonecznienia) i tabelę z informacją, z którego roku pochodzi każdy miesiąc. Po nagłówku następują dane godzinowe:
 
 | Kolumna | Opis | Jednostka |
 |---------|------|-----------|
@@ -228,6 +222,8 @@ Plik TMY w PVGIS zawiera nagłówek metadanych (współrzędne, wysokość, prze
 | `WD10m` | Kierunek wiatru | ° |
 | `SP` | Ciśnienie atmosferyczne przy powierzchni | Pa |
 
+Plik TMY zawiera 10 zmiennych meteorologicznych w rozdzielczości godzinowej.
+
 ---
 
 ## 11. Analiza formatów plików TMY dla wybranej lokalizacji
@@ -238,7 +234,7 @@ Pobrano pliki TMY dla Krakowa (PVGIS-SARAH3, 2005–2023) w formatach: **CSV**, 
 
 ![q11_tmy_profile](./imgs/q11_tmy_profile.png "Rys. 6. TMY Kraków: miesięczne sumy GHI z zaznaczonym rokiem źródłowym każdego miesiąca (lewy panel) oraz mapa ciepła średniego godzinowego GHI w cyklu dobowo-rocznym (prawy panel).")
 
-Tabela miesięcy i lat źródłowych z nagłówka pliku TMY CSV:
+Tabela miesięcy i lat źródłowych z nagłówka TMY:
 
 | Miesiąc | Rok źródłowy |
 |---------|:------------:|
@@ -255,15 +251,15 @@ Tabela miesięcy i lat źródłowych z nagłówka pliku TMY CSV:
 | Listopad | 2020 |
 | Grudzień | 2008 |
 
-Format EPW jest przeznaczony dla programów symulacji budynkowych (EnergyPlus, OpenStudio), natomiast CSV i JSON służą jako dane wejściowe dla narzędzi symulacji PV.
+Format EPW służy do symulacji budynkowych (EnergyPlus), CSV i JSON — do symulacji PV. Miesiące TMY dla Krakowa pochodzą z lat 2005–2022 (PVGIS-SARAH3).
 
 ---
 
 ## 12. Produkcja energii przez system o mocy 1 kWp: montaż wolnostojący vs BIPV
 
-> W miejscu swojego zamieszkania zlokalizuj stacjonarny system fotowoltaiczny o mocy 1 kWp ustawiony pod optymalnymi kątami azymutu i elewacji (wyliczenia dokonane przez portal). Korzystając z bazy PVGIS-SARAH3 sprawdź jaką ilość energii będzie on rocznie produkował w przypadku montażu wolnostojącego a jaką w przypadku integracji z budynkiem. Wartości końcowe przedstaw w sprawozdaniu określając procentowy spadek produkcji dla systemu zintegrowanego z budynkiem. Spróbuj wyjaśnić co jest przyczyną tego spadku produkcji energii elektrycznej?
+> W miejscu swojego zamieszkania zlokalizuj stacjonarny system fotowoltaiczny o mocy 1 kWp ustawiony pod optymalnymi kątami azymutu i elewacji (wyliczenia dokonane przez portal). Korzystając z bazy PVGIS-SARAH3 sprawdź jaką ilość energii będzie on rocznie produkował w przypadku montażu wolnostojącego a jaką w przypadku integracji z budynkiem. Wartości końcowe przedstaw w sprawozdaniu określając procentowy spadek produkcji dla systemu zintegrowanego z budynkiem. Spróbuj wyjaśnić co jest przyczyną tego spadku produkcji energii elektrycznej? Jako że mieszkam w bloku to analizowany jest system zamontowany pionowo na elewacji bloku.
 
-Lokalizacja: Kraków (50,062°N, 19,937°E) | Baza: PVGIS-SARAH3 | Moc: 1 kWp | Straty systemowe: 14%
+Lokalizacja: Kraków | Baza: PVGIS-SARAH3 | Moc: 1 kWp | Straty systemowe: 14%
 
 | Wariant montażu | Kąt nachylenia | Azymut | E_y [kWh/kWp] |
 |-----------------|:--------------:|:------:|:-------------:|
@@ -271,7 +267,7 @@ Lokalizacja: Kraków (50,062°N, 19,937°E) | Baza: PVGIS-SARAH3 | Moc: 1 kWp | 
 | BIPV (fasada południowa) | 90° | 0° | **775,5** |
 | **Spadek produkcji BIPV** | | | **−28,5%** |
 
-| Miesiąc | Wolnostojący [kWh] | BIPV 90° [kWh] | Różnica [%] |
+| Miesiąc | Wolnostojący [kWh] | BIPV 90° [kWh] | Różnica [%]* |
 |---------|:-----------------:|:---------------:|:-----------:|
 | Sty | 44,6 | 47,2 | **−5,7%** |
 | Lut | 57,8 | 54,0 | +6,6% |
@@ -286,7 +282,11 @@ Lokalizacja: Kraków (50,062°N, 19,937°E) | Baza: PVGIS-SARAH3 | Moc: 1 kWp | 
 | Lis | 46,6 | 47,3 | **−1,5%** |
 | Gru | 39,6 | 43,7 | **−10,3%** |
 
-**Przyczyna spadku produkcji BIPV:** Pionowe zamontowanie modułów (90°) powoduje, że promieniowanie bezpośrednie pada pod dużym kątem padania przez większą część roku — szczególnie latem, gdy Słońce jest wysoko nad horyzontem (elewacja ~63° w czerwcu). Dla pionowej fasady kąt padania wynosi wtedy ~63°, co daje współczynnik cos(63°) ≈ 0,45 — panel pochłania mniej niż połowę potencjalnego promieniowania bezpośredniego. Wyjątek stanowią miesiące zimowe (grudzień, styczeń), gdy Słońce jest nisko (~17°) i fasada pionowa jest do niego stosunkowo dobrze ustawiona — BIPV produkuje wtedy więcej niż system wolnostojący pod kątem 39°.
+*Różnica = (Wolnostojący − BIPV) / Wolnostojący × 100%; wartości ujemne (bold) oznaczają miesiące, gdy BIPV produkuje więcej.*
+
+Pionowe zamontowanie modułów (β = 90°) powoduje duże kąty padania promieniowania przez większość roku. W czerwcu przy elewacji Słońca ~63° kąt padania na fasadę wynosi 63°, a cos(63°) ≈ 0,45 — panel pochłania mniej niż połowę promieniowania bezpośredniego. Zimą proporcje się odwracają: przy elewacji ~17° kąt padania na fasadę wynosi θ = 90° − 17° = **73°**, podczas gdy na panelu 39° kąt ten to θ = (90° − 39°) − 17° = **34°**. Panel stacjonarny jest też geometrycznie bliżej optimum zimowego, więc fasada BIPV przewyższa go w grudniu tylko dzięki niskiej pozycji Słońca na niebie, nie z powodu lepszego kąta.
+
+BIPV na fasadzie południowej produkuje o 28,5% mniej rocznie niż system wolnostojący, lecz w grudniu daje o 10% więcej dzięki geometrii zimowego Słońca.
 
 ---
 
@@ -294,21 +294,29 @@ Lokalizacja: Kraków (50,062°N, 19,937°E) | Baza: PVGIS-SARAH3 | Moc: 1 kWp | 
 
 > Korzystając z informacji zawartych na portalu stwórz plik obrysu horyzontu taki aby idąc od kierunku północnego (przez wschodni) do południowego horyzont miał wysokość 10°, a idąc dalej od kierunku południowego (przez zachodni) do północnego horyzont miał 20° wysokości.
 
-Plik horyzontu zawiera 36 wierszy (co 10° azymutu, od 0° do 350°). Format: `azymut,wysokość_horyzontu`.
+Horyzont opisany jest 36 punktami co 10° azymutu (od 0° do 350°) w formacie: `azymut,wysokość_horyzontu`.
+
+Zadanie zakłada 10°/20° jako przykładowe wartości; poniżej zastosowano profil oparty na rzeczywistej zabudowie przy ul. Ugorek 44 w Krakowie. Profil horyzontu: strona północna i wschodnia (0°–100°, 150°–170°) — 10°; sektor SSE (110°–140°, tj. ~−60° od południa) — 15° (niższa zabudowa); strona południowa i zachodnia (180°–350°) — **30°** (blok mieszkalny).
 
 ```
 0,10
-10,10
-20,10
+...
+100,10
+110,15
+120,15
+130,15
+140,15
+150,10
 ...
 170,10
-180,20
-190,20
+180,30
 ...
-350,20
+350,30
 ```
 
-Horyzont 10° od strony północnej (0°–170°) symuluje niewysoką zabudowę lub drzewa po wschodniej stronie. Horyzont 20° od strony południowej (180°–350°) symuluje wyższą przeszkodę (budynek, wzniesienie) blokującą promieniowanie bezpośrednie przy niskich kątach elewacji Słońca — co ma szczególne znaczenie zimą. Plik zapisano jako `horizon_ugorek44.csv`.
+![Obrys horyzontu — wykres polarny](imgs/q14_horizon.png)
+
+Profil odzwierciedla zabudowę miejską z dominującą przeszkodą od południa (30°).
 
 ---
 
@@ -316,31 +324,33 @@ Horyzont 10° od strony północnej (0°–170°) symuluje niewysoką zabudowę 
 
 > Wygenerowany plik wczytaj do na portal i użyj w symulacji pracy wolnostojącego systemu PV o mocy 1 kWp ustawionego pod optymalnymi kątami azymutu i elewacji (kąty muszą być na nowo obliczone przez portal po wczytaniu pliku obrysu horyzontu). Otrzymane wyniki (energia i nowe kąty) opisz w sprawozdaniu i porównaj z wynikami osiągniętymi w pkt.12.
 
-Lokalizacja: Ugorek 44, Kraków (50,079°N, 19,984°E) | Baza: PVGIS-SARAH3 | Moc: 1 kWp
+Lokalizacja: Ugorek 44, Kraków | Baza: PVGIS-SARAH3 | Moc: 1 kWp
 
 | Parametr | Bez horyzontu (ref. pkt. 12) | Z horyzontem niestandardowym |
 |----------|:---------------------------:|:----------------------------:|
-| Kąt optymalny | 39° | **35°** |
-| Azymut optymalny | −1° | **−12°** |
-| E_y [kWh/kWp] | 1081,2 | **1011,2** |
-| Zmiana roczna | — | **−6,5%** |
+| Kąt optymalny | 39° | **33°** |
+| Azymut optymalny | −1° | **−22°** |
+| E_y [kWh/kWp] | 1085,0 | **945,9** |
+| Zmiana roczna | — | **−12,8%** |
 
 | Miesiąc | Bez horyzontu [kWh] | Z horyzontem [kWh] | Zmiana [%] |
 |---------|:-------------------:|:------------------:|:----------:|
-| Sty | 44,2 | 26,3 | −40,6% |
-| Lut | 57,3 | 48,6 | −15,1% |
-| Mar | 95,9 | 91,1 | −5,1% |
-| Kwi | 114,8 | 114,2 | −0,6% |
-| Maj | 121,2 | 122,7 | +1,2% |
-| Cze | 124,7 | 127,0 | +1,9% |
-| Lip | 130,0 | 131,9 | +1,4% |
-| Sie | 123,6 | 124,1 | +0,4% |
-| Wrz | 102,9 | 99,2 | −3,6% |
-| Paź | 81,1 | 71,9 | −11,3% |
-| Lis | 46,5 | 33,4 | −28,3% |
-| Gru | 39,0 | 20,9 | −46,3% |
+| Sty | 44,6 | 21,5 | −51,9% |
+| Lut | 57,8 | 34,4 | −40,5% |
+| Mar | 97,0 | 84,4 | −13,0% |
+| Kwi | 115,4 | 111,7 | −3,3% |
+| Maj | 121,6 | 122,7 | +0,9% |
+| Cze | 124,7 | 128,3 | +2,9% |
+| Lip | 129,9 | 132,2 | +1,8% |
+| Sie | 123,0 | 121,9 | −0,9% |
+| Wrz | 103,0 | 92,5 | −10,2% |
+| Paź | 81,8 | 57,1 | −30,2% |
+| Lis | 46,6 | 23,7 | −49,2% |
+| Gru | 39,6 | 15,6 | −60,7% |
 
-**Analiza:** Horyzont 20° od strony południowej drastycznie redukuje produkcję zimową — w grudniu o **−46,3%**, w styczniu o **−40,6%**. Słońce w Polsce zimą wschodzi i zachodzi nisko (elewacja <20°), a przeszkoda o wysokości 20° zasłania je przez znaczną część krótkiego dnia. PVGIS zareagował zmianą optymalnych kątów: nachylenie zmniejszyło się z 39° do **35°** (mniejszy kąt oznacza lepsze wychwytywanie promieniowania od przodu horyzontu), a azymut przesunął się z −1° na **−12°** (panel obrócony lekko na wschód, bo zachodnia część horyzontu jest bardziej zablokowana). Latem (maj–sierpień) wpływ horyzontu jest pomijalny lub nieznacznie pozytywny, gdyż Słońce jest wtedy wysoko ponad przeszkodami.
+Blok zabudowy 30° od południa zasłania Słońce przez znaczną część dnia zimowego (elewacja Słońca w grudniu ~17°) — stąd spadek w grudniu o **−60,7%** i w listopadzie o **−49,2%**. PVGIS przesunął azymut z −1° na **−22°** (panel skierowany bardziej na wschód, gdzie horyzont to tylko 10°–15°) i zmniejszył nachylenie z 39° do **33°** (mniejszy kąt zmniejsza efekt zasłonięcia przez bliską ścianę). Platforma SSE (15°, 110°–140°) pogłębia niedobory **jesienne** (październik −30,2%) — blokuje poranne godziny, które jesienią mają duży udział w dziennej produkcji. Latem Słońce jest wystarczająco wysoko, by wschodziło ponad przeszkodami — skierowanie panelu lekko na wschód daje nieznaczny zysk (+1,8–2,9%).
+
+Horyzont 30° od południa redukuje roczną produkcję o 12,8%, szczególnie zimą; PVGIS optymalizuje kąt do 33° i azymut do −22°.
 
 ---
 
@@ -348,37 +358,35 @@ Lokalizacja: Ugorek 44, Kraków (50,079°N, 19,984°E) | Baza: PVGIS-SARAH3 | Mo
 
 > W miejscu swojego zamieszkania zlokalizuj nadążny system fotowoltaiczny o mocy 1 kWp. Korzystając z bazy PVGIS-SARAH3 sprawdź jaką ilość energii będzie on rocznie produkował w każdym z trzech dostępnych na portalu PVGIS wariantów śledzenia pozycji Słońca. Tam gdzie to możliwe pozwól portalowi w sposób automatyczny dobrać parametry śledzenia. Pamiętaj aby analiza odbywała się dla obrysu horyzontu wynikającego z ukształtowania terenu („Calculated horizon") a nie dla własnego pliku obrysu horyzontu. Przeanalizuj wyniki porównując je z wynikami wolnostojącego systemu PV ustawionego pod optymalnymi kątami (pkt. 12). Wyniki analizy i porównania umieść w sprawozdaniu.
 
-Lokalizacja: Ugorek 44, Kraków (50,079°N, 19,984°E) | Baza: PVGIS-SARAH3 | Horizont: Calculated (teren) | Moc: 1 kWp
+Lokalizacja: Ugorek 44, Kraków | Baza: PVGIS-SARAH3 | Horyzont: Calculated | Moc: 1 kWp
 
-| System | E_y [kWh/kWp] | Przyrost vs stacjonarny (pkt. 12) |
-|--------|:-------------:|:---------------------------------:|
-| Stacjonarny, kąt optymalny (pkt. 12) | **1081,2** | — |
-| Vertical axis (śledzenie azymutu) | **1191,2** | +10,2% |
-| Inclined axis (śledzenie elewacji) | **1361,2** | +25,9% |
-| Two-axis (pełne śledzenie) | **1103,7** | +2,1% |
+Systemy nadążne obliczono narzędziem seriescalc (rok 2023); jako punkt odniesienia przyjęto wartość wolnostojącego z pkt. 12 (1085,0 kWh/rok).
 
-| Miesiąc | Stacjonarny | Vertical axis | Inclined axis | Two-axis |
-|---------|:-----------:|:-------------:|:-------------:|:--------:|
-| Sty | 44,2 | 27,0 | 46,6 | 42,6 |
-| Lut | 57,3 | 47,6 | 62,5 | 53,7 |
-| Mar | 95,9 | 97,4 | 116,5 | 96,2 |
-| Kwi | 114,8 | 112,0 | 118,7 | 96,6 |
-| Maj | 121,2 | 167,2 | 175,1 | 136,6 |
-| Cze | 124,7 | 169,5 | 175,2 | 138,8 |
-| Lip | 130,0 | 181,4 | 188,7 | 147,7 |
-| Sie | 123,6 | 136,2 | 145,7 | 114,5 |
-| Wrz | 102,9 | 130,1 | 151,5 | 117,2 |
-| Paź | 81,1 | 68,2 | 89,8 | 77,1 |
-| Lis | 46,5 | 31,1 | 47,7 | 42,9 |
-| Gru | 39,0 | 23,5 | 43,2 | 39,9 |
+| System | E_y [kWh/rok] | Przyrost vs stacjonarny (§12) |
+|--------|:-------------:|:-----------------------------:|
+| Stacjonarny (ref. §12, PVcalc) | **1085,0** | — |
+| Inclined axis (oś pozioma N-S) | **1198,6** | +10,5% |
+| Two-axis (pełne śledzenie) | **1368,1** | +26,1% |
+| Vertical axis (oś pionowa, kąt opt.) | **1336,9** | +23,2% |
 
-**Analiza:**
+| Miesiąc | Stacjonarny | Inclined axis | Two-axis | Vertical axis |
+|---------|:-----------:|:-------------:|:--------:|:-------------:|
+| Sty | 38,1 | 27,7 | 47,8 | 46,0 |
+| Lut | 49,9 | 46,8 | 60,4 | 59,8 |
+| Mar | 94,6 | 97,9 | 117,0 | 115,6 |
+| Kwi | 98,5 | 116,7 | 124,1 | 122,0 |
+| Maj | 127,5 | 168,6 | 176,7 | 171,6 |
+| Cze | 125,3 | 169,8 | 175,3 | 169,1 |
+| Lip | 136,3 | 180,7 | 188,1 | 182,7 |
+| Sie | 110,8 | 135,1 | 144,3 | 141,5 |
+| Wrz | 116,7 | 132,2 | 153,7 | 151,4 |
+| Paź | 73,2 | 67,5 | 88,7 | 87,7 |
+| Lis | 39,7 | 31,4 | 48,1 | 47,2 |
+| Gru | 34,8 | 24,2 | 43,9 | 42,1 |
 
-**Inclined axis** (+25,9%) osiąga największy roczny przyrost. Śledzenie elewacji (kąta wysokości) Słońca przez cały rok opłaca się szczególnie w Polsce, gdzie Słońce wznosi się na bardzo różne wysokości między zimą a latem. Automatycznie dobierany kąt pochylenia osi optymalnie wykorzystuje tę zmienność.
+Two-axis (+26,1%) daje najwyższy roczny uzysk — panel zawsze wskazuje na Słońce, eliminując straty kątowe. Vertical axis (+23,2%) jest nieznacznie gorszy: śledzenie azymutu przy stałym nachyleniu ~39° dobrze kompensuje ruch poziomy Słońca, ale nie koryguje elewacji. Inclined axis N-S (+10,5%) działa dobrze latem (maj–wrzesień), ale w zimie (styczeń: −27%, grudzień: −31%) daje mniej niż stacjonarny — w południe oś wymusza orientację zbliżoną do poziomej, gdy optymalne byłoby strome nachylenie ~70°.
 
-**Vertical axis** (+10,2%) dobrze sprawdza się latem (maj–wrzesień +10–40%), gdy Słońce jest wysoko i szeroko przemieszcza się po niebie. W zimie działa gorzej niż stacjonarny (styczeń −39%, grudzień −40%) — obracając się wokół pionowej osi nie może kompensować niskiej elewacji Słońca, a panel zachowuje stały kąt nachylenia.
-
-**Two-axis** (+2,1%) daje niski roczny zysk pomimo pełnego śledzenia. Przyczyną jest dominacja promieniowania rozproszonego w Polsce (Kd > 0,5 w 8 z 12 miesięcy) — przy rozproszonym promieniowaniu orientacja panelu nie wpływa istotnie na uzysk, a zysk z pełnego śledzenia realizuje się głównie przy promieniowaniu bezpośrednim.
+Najwyższy roczny przyrost daje two-axis (+26,1%); inclined axis N-S jest opłacalny latem, lecz zimą przegrywa ze stacjonarnym.
 
 ---
 
@@ -404,12 +412,12 @@ Lokalizacja: Ugorek 44, Kraków (50,079°N, 19,984°E) | Baza: PVGIS-SARAH3 | Ho
 | Zapotrzebowanie dobowe | 1008 Wh/dobę |
 | Wymagana autonomia | 7 dni (168 h) |
 | Pojemność użytkowa akumulatora | 7056 Wh |
-| Poziom odcięcia (cutoff) | 40% |
-| Pojemność nominalna akumulatora | **11 760 Wh** |
+| Minimalne SoC (cutoff) | 40% → DoD = 60% |
+| Pojemność nominalna akumulatora | **11 760 Wh** (= 7 056 / 0,60) |
 | Azymut modułów | 0° (południe) |
 | Profil zapotrzebowania | jednostajny: 1/24 na każdą godzinę |
 
-### Wyniki przeszukiwania siatki (f_e — % dni z pustym akumulatorem)
+### Wyniki przeszukiwania siatki (f<sub>e</sub> — % czasu z pustym akumulatorem)
 
 | Moc PV [Wp] | 50° | 55° | 60° | 65° | 70° |
 |:-----------:|:---:|:---:|:---:|:---:|:---:|
@@ -421,40 +429,51 @@ Lokalizacja: Ugorek 44, Kraków (50,079°N, 19,984°E) | Baza: PVGIS-SARAH3 | Ho
 | 1750 | 0,3% | 0,3% | 0,3% | 0,3% | 0,5% |
 | **2000** | **0,0% ✓** | **0,0% ✓** | **0,0% ✓** | **0,0% ✓** | **0,0% ✓** |
 
-Kryterium spełnione (f_e = 0%) po raz pierwszy dla **2000 Wp przy kącie 50°**.
+Kryterium spełnione (f<sub>e</sub> = 0%) po raz pierwszy dla **2000 Wp przy kącie 50°**.
 
 ### Rekomendacja projektowa
 
 | Parametr | Wartość |
 |----------|---------|
 | Moc modułów PV | **2000 Wp** |
-| Kąt nachylenia | **50°** (ku południu) |
+| Kąt nachylenia | **70°** (ku południu, optymalny zimowy) |
 | Pojemność nominalna akumulatora | **11 760 Wh** |
 | Pojemność użytkowa | 7056 Wh (autonomia 7 dni) |
 
 ### Miesięczny bilans energetyczny
 
-| Miesiąc | Produkcja [Wh/d] | Zapotrzebowanie [Wh/d] | Nadwyżka [Wh/d] | f_e [%] | f_f [%] |
-|---------|:----------------:|:----------------------:|:---------------:|:-------:|:-------:|
-| Sty | 1008,0 | 1008,0 | 0,0 | 0,0 | 59,4 |
-| Lut | 1030,3 | 1008,0 | +22,3 | 0,0 | 80,3 |
-| Mar | 1009,6 | 1008,0 | +1,6 | 0,0 | 93,7 |
-| Kwi | 1009,0 | 1008,0 | +1,0 | 0,0 | 98,6 |
-| Maj | 1008,7 | 1008,0 | +0,7 | 0,0 | 99,0 |
-| Cze | 1008,4 | 1008,0 | +0,4 | 0,0 | 100,0 |
-| Lip | 1007,6 | 1008,0 | −0,4 | 0,0 | 100,0 |
-| Sie | 1006,9 | 1008,0 | −1,1 | 0,0 | 99,7 |
-| Wrz | 1006,3 | 1008,0 | −1,7 | 0,0 | 97,4 |
-| Paź | 1002,1 | 1008,0 | −5,9 | 0,0 | 85,1 |
-| Lis | 995,0 | 1008,0 | −13,0 | 0,0 | 64,0 |
-| Gru | 1005,2 | 1008,0 | −2,8 | 0,0 | 49,6 |
+| Miesiąc | Dostarczona [Wh/d] | Zapotrzebowanie [Wh/d] | Straty [Wh/d] | f<sub>e</sub> [%] | f<sub>f</sub> [%] |
+|---------|:-----------------:|:----------------------:|:-------------:|:-------:|:-------:|
+| Sty | 1002,2 | 1008,0 | 1474,3 | 0,0 | 57,5 |
+| Lut | 1037,5 | 1008,0 | 2185,6 | 0,0 | 72,0 |
+| Mar | 1010,1 | 1008,0 | 3755,4 | 0,0 | 90,3 |
+| Kwi | 1008,9 | 1008,0 | 4579,6 | 0,0 | 97,2 |
+| Maj | 1008,9 | 1008,0 | 4414,2 | 0,0 | 97,6 |
+| Cze | 1008,4 | 1008,0 | 4531,0 | 0,0 | 99,7 |
+| Lip | 1007,7 | 1008,0 | 4778,3 | 0,0 | 99,5 |
+| Sie | 1006,9 | 1008,0 | 4894,1 | 0,0 | 99,5 |
+| Wrz | 1005,6 | 1008,0 | 4532,0 | 0,0 | 94,6 |
+| Paź | 1001,3 | 1008,0 | 3535,5 | 0,0 | 82,8 |
+| Lis | 993,4 | 1008,0 | 1953,7 | 0,0 | 62,1 |
+| Gru | 1006,9 | 1008,0 | 1236,6 | 0,0 | 48,4 |
 
-*f_e — % dni z pustym akumulatorem; f_f — % dni z pełnym akumulatorem*
+*f<sub>e</sub> — % czasu z pustym akumulatorem; f<sub>f</sub> — % czasu z pełnym akumulatorem; Straty — energia obcięta przez pełny akumulator [Wh/d]*
 
 ### Wnioski i uwagi
 
-**Dobór kąta nachylenia.** Kąt 50° jest wyraźnie stromszy niż optymalny roczny (~38°). Celowo faworyzuje niskie Słońce zimowe — dzięki temu panel zbiera więcej energii w grudniu i styczniu, co pozwala na zmniejszenie wymaganej mocy PV.
+Kąt 70° jest stromszy niż optymalny roczny (~38°) — celowo, bo faworyzuje niskie Słońce zimowe. Przy elewacji ~17° w grudniu kąt padania wynosi θ = (90°−70°)−17° = **3°**, czyli panel jest niemal prostopadle do Słońca w południe. Wszystkie badane kąty (50°–70°) spełniają f<sub>e</sub> = 0% przy 2000 Wp; wybrano 70° jako dający największy margines produkcji zimowej — E_lost_d w grudniu i styczniu jest wyższy niż przy kątach płaskich, co oznacza większy bufor na gorsze dni.
 
-**Nadwyżka letnia.** W miesiącach letnich (czerwiec–lipiec) akumulator jest pełny przez 100% dni (f_f = 100%). System 2000 Wp przy nasłonecznieniu letnim produkuje szacunkowo 5000–7000 Wh/d (dla Krakowa czerwiec ~185 kWh/miesiąc na kWp), wobec zapotrzebowania 1008 Wh/d — nadwyżka jest odcinana przez regulator ładowania.
+Latem akumulator jest pełny przez ≥99,5% czasu (f<sub>f</sub> ≥ 99,5% w czerwcu i lipcu) — system 2 kWp wytwarza kilkakrotnie więcej niż wynosi dobowe zapotrzebowanie. Możliwe sposoby zagospodarowania nadwyżki:
+- podłączenie odbiornika sezonowego aktywowanego gdy SoC > 90% (pompa wody, wentylacja);
+- grzałka elektryczna w zasobniku CWU jako "gąbka" energetyczna;
+- modyfikacja na system hybrydowy z oddawaniem energii do sieci.
 
-**Granica projektu.** System 1750 Wp nie spełnia kryterium (f_e = 0,3% w najtrudniejszym miesiącu) — odpowiada to ok. 1 dniu w roku z niedoborem. Dopiero 2000 Wp gwarantuje f_e = 0% we wszystkich miesiącach przy 7-dniowej autonomii akumulatora.
+System 1750 Wp nie spełnia kryterium — f<sub>e</sub> = 0,3% niezależnie od kąta, co odpowiada ok. 1 dniowi niedoboru rocznie. Dopiero 2000 Wp zapewnia f<sub>e</sub> = 0% przez cały rok.
+
+Do zasilania odbiornika 42 W przez cały rok wystarczą 2000 Wp modułów PV z akumulatorem 11 760 Wh; latem system generuje kilkakrotną nadwyżkę, którą należy zagospodarować.
+
+---
+
+## Podsumowanie
+
+Portal PVGIS z bazą SARAH3 dostarcza wystarczające dane do projektowania systemów PV w Polsce — rozdzielczość 5 km i pokrycie 2005–2023 pozwalają na wiarygodne szacowanie zarówno rocznych sum, jak i rozkładu godzinowego promieniowania. Dla Krakowa roczna suma GHI wynosi około 1140–1200 kWh/m², z dominacją promieniowania rozproszonego w zimie (Kd > 0,6 w grudniu), co ogranicza zyski z systemów nadążnych do ~26% rocznie dla układu dwuosiowego. Montaż BIPV na fasadzie pionowej obniża roczną produkcję o 28,5% w porównaniu z układem wolnostojącym, ale jest jedyną opcją przy braku dachu — kompromis opłacalny gdy alternatywą jest brak instalacji. Zabudowa miejska (horyzont 30° od południa) może redukować produkcję o kolejne 12,8%, co przy projektowaniu systemów w gęstej zabudowie wymaga uwzględnienia cieniowania. Wyspowy system 42 W przy 7-dniowej autonomii wymaga 2 kWp modułów i ~12 kWh pojemności akumulatora; letnia nadwyżka energii jest nieunikniona i powinna być z góry zaplanowana.

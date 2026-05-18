@@ -14,7 +14,7 @@ MONTHS_PL = ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze",
 month_years = {}
 with open(DATA) as f:
     lines = f.readlines()
-for line in lines[4:16]:
+for line in lines[4:17]:
     parts = line.strip().split(",")
     if len(parts) == 2 and parts[0].isdigit():
         month_years[int(parts[0])] = int(parts[1])

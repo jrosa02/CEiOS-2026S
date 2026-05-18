@@ -1,19 +1,27 @@
 import requests
 import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 BASE_PVCALC = "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc"
 
 LAT = 50.062
 LON = 19.937
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+IMGS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "imgs")
 os.makedirs(OUT_DIR, exist_ok=True)
+os.makedirs(IMGS_DIR, exist_ok=True)
 
 MONTHS_PL = ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze",
              "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"]
 
 # Task 13: custom horizon file
-# N→E→S (azimuths 0°–170°): 10°  |  S→W→N (azimuths 180°–350°): 20°
-HORIZON_HEIGHTS = [10] * 18 + [20] * 18   # 36 values, every 10°
+# Baseline 10° everywhere; southern block 30° (180°–350°); SSE platform 15° (110°–140°)
+HORIZON_HEIGHTS = [10] * 36
+for i in range(18, 36):   # 180°–350°: south block 30°
+    HORIZON_HEIGHTS[i] = 30
+for i in range(11, 15):   # 110°–140°: SSE platform 15°
+    HORIZON_HEIGHTS[i] = 15
 
 def write_horizon_csv():
     path = os.path.join(OUT_DIR, "horizon_krakow.csv")
@@ -28,6 +36,28 @@ def write_horizon_csv():
     for i, h in enumerate(HORIZON_HEIGHTS):
         print(f"  {i*10:>4}°  →  {h}°")
     print()
+
+def plot_horizon_polar():
+    azimuths_deg = [i * 10 for i in range(36)] + [0]
+    heights = HORIZON_HEIGHTS + [HORIZON_HEIGHTS[0]]
+    # Convert PVGIS azimuth (0°=N, CW) to matplotlib polar (0°=E, CCW)
+    theta = np.radians([90 - a for a in azimuths_deg])
+
+    fig, ax = plt.subplots(subplot_kw={"projection": "polar"}, figsize=(6, 6))
+    ax.set_theta_zero_location("N")   # 0° at top
+    ax.set_theta_direction(-1)        # clockwise
+    ax.fill(theta, heights, alpha=0.35, color="sienna")
+    ax.plot(theta, heights, color="sienna", linewidth=1.5, label="Horyzont [°]")
+    ax.set_rlabel_position(135)
+    ax.set_rticks([10, 20, 30])
+    ax.set_rlim(0, 35)
+    ax.set_xticks(np.radians([0, 45, 90, 135, 180, 225, 270, 315]))
+    ax.set_xticklabels(["N", "NE", "E", "SE", "S", "SW", "W", "NW"])
+    ax.set_title("Obrys horyzontu — Ugorek 44, Kraków\n(blok S 30°, platforma SSE 15°)", pad=15, fontsize=10)
+    out = os.path.join(IMGS_DIR, "q14_horizon.png")
+    plt.savefig(out, dpi=150, bbox_inches="tight")
+    plt.close()
+    print(f"Zapisano wykres horyzontu: {out}")
 
 def extract_angles(data):
     mount = data.get("inputs", {}).get("mounting_system", {}).get("fixed", {})
@@ -58,6 +88,7 @@ def get_pvcalc(optimalangles=1, userhorizon=None):
 
 print("=== Zadanie 13: Plik obrysu horyzontu ===\n")
 write_horizon_csv()
+plot_horizon_polar()
 
 print("=== Zadanie 14: Symulacja z niestandardowym horyzontem vs bez horyzontu ===\n")
 print(f"Lokalizacja: Kraków ({LAT}°N, {LON}°E)")

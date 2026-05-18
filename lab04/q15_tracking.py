@@ -1,15 +1,21 @@
 import requests
+from collections import defaultdict
 
 BASE = "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc"
 
 LAT = 50.062
 LON = 19.937
 
+# PVGIS seriescalc trackingtype mapping:
+#   0 = fixed
+#   1 = inclined axis (single horizontal axis N-S, tracks elevation)
+#   2 = two-axis (full tracking)
+#   3 = vertical axis (tracks azimuth, inclination fixed → needs optimalinclination=1)
 TRACKING_MODES = [
-    (0,  "Stacjonarny (optymalny kąt)", True),
-    (1,  "Vertical axis (oś pionowa)",  True),
-    (2,  "Inclined axis (oś pozioma)",  True),
-    (4,  "Two-axis (dwuosiowy)",        False),
+    (0, "Stacjonarny (optymalny kąt)", True),
+    (1, "Inclined axis (oś pozioma N-S)", False),
+    (2, "Two-axis (dwuosiowy)",          False),
+    (3, "Vertical axis (oś pionowa)",    True),
 ]
 
 MONTHS_PL = ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze",
@@ -35,9 +41,17 @@ def get_tracking_yield(trackingtype, optimalinclination=False):
     annual = sum(h.get("P", 0) for h in hourly) / 1000
     return annual, hourly
 
+def monthly_totals(hourly):
+    by_month = defaultdict(float)
+    for h in hourly:
+        t = str(h["time"])
+        month = int(t[4:6])
+        by_month[month] += h.get("P", 0) / 1000
+    return [by_month[m] for m in range(1, 13)]
+
 print("=== Zadanie 15: Porównanie systemów nadążnych 1 kWp — Kraków ===")
 print(f"Lokalizacja: lat={LAT}, lon={LON}")
-print(f"Baza danych: PVGIS-SARAH3\n")
+print(f"Baza danych: PVGIS-SARAH3, rok 2023\n")
 
 results = []
 for ttype, name, opt in TRACKING_MODES:
@@ -48,12 +62,12 @@ for ttype, name, opt in TRACKING_MODES:
 
 e_fixed = results[0][1]
 print()
-print(f"{'System':>34} | {'E_y [kWh/rok]':>14} | {'Przyrost vs stacjonarny':>24}")
-print("-" * 80)
+print(f"{'System':>36} | {'E_y [kWh/rok]':>14} | {'Przyrost vs stacjonarny':>24}")
+print("-" * 82)
 for name, e_y, _ in results:
     gain = (e_y - e_fixed) / e_fixed * 100
     marker = "" if gain == 0 else f"(+{gain:.1f}%)" if gain > 0 else f"({gain:.1f}%)"
-    print(f"{name:>34} | {e_y:>14.1f} | {marker:>24}")
+    print(f"{name:>36} | {e_y:>14.1f} | {marker:>24}")
 
 print()
 print("--- Miesięczna produkcja energii [kWh] ---")
@@ -64,28 +78,9 @@ for name, _, _ in results:
 print()
 print("-" * (9 + len(results) * 19))
 
-from collections import defaultdict
-
-def monthly_totals(hourly):
-    by_month = defaultdict(float)
-    for h in hourly:
-        t = str(h["time"])
-        month = int(t[4:6])
-        by_month[month] += h.get("P", 0) / 1000
-    return [by_month[m] for m in range(1, 13)]
-
 monthly_data = [monthly_totals(r[2]) for r in results]
-
 for i in range(12):
     print(f"{MONTHS_PL[i]:>8}", end="")
     for md in monthly_data:
         print(f" | {md[i]:>16.2f}", end="")
     print()
-
-print()
-print("Wniosek: Inclined axis osiąga największy przyrost (+30.9%) — śledzenie kąta elewacji")
-print("  Słońca przez cały rok daje największy zysk na szerokości Krakowa (~50°N).")
-print("Vertical axis (+14.6%): śledzenie azymutu — korzystne gdy Słońce jest wysoko (lato),")
-print("  ale zimą daje mniejszy zysk niż stacjonarny (moduły 'nie widzą' nisko stojącego Słońca).")
-print("Two-axis (+6.0%): w modelu PVGIS dla tej lokalizacji zysk jest stosunkowo niski —")
-print("  szczegółowe parametry śledzenia mogą wymagać weryfikacji w portalu PVGIS.")
